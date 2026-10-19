@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXUM Systems | Sistemas para oficinas, frotas e transporte</title>
+<meta name="description" content="NEXUM Systems cria sistemas de gestão para quem mantém e move frotas: NEXUM Inspect (checklist, OS e manutenção) e NEXUM Fleet (frota, telemetria e passageiros).">
+<meta name="theme-color" content="#142B45">
+<link rel="icon" type="image/svg+xml" href="site/nexum-icone.svg">
+<style>
+@font-face{font-family:Manrope;font-weight:200 800;font-display:swap;src:url(site/fontes/manrope-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Manrope;font-weight:200 800;font-display:swap;src:url(site/fontes/manrope-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Inter;font-weight:100 900;font-display:swap;src:url(site/fontes/inter-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Inter;font-weight:100 900;font-display:swap;src:url(site/fontes/inter-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --marinho:#142B45; --marinho-900:#0A1A2B; --marinho-800:#0F2237; --profundo:#203056;
+  --petroleo:#147D92; --petroleo-600:#0F6475; --turquesa:#35B7A4; --turquesa-300:#6FD0C1;
+  --claro:#F3F8F8; --texto:#526273; --linha:#DCE8F1; --branco:#fff;
+  --raio-sm:8px; --raio:12px; --raio-lg:16px; --raio-xl:24px;
+  --sombra:0 1px 2px rgba(20,43,69,.06),0 8px 24px rgba(20,43,69,.08);
+  --sombra-forte:0 24px 60px -12px rgba(6,17,29,.45);
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font:400 16px/1.6 Inter,system-ui,sans-serif;color:var(--marinho);background:var(--branco);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:Manrope,Inter,sans-serif;line-height:1.12;letter-spacing:-.02em}
+.ic{width:1.25em;height:1.25em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.sr{position:absolute;left:-9999px}
+:focus-visible{outline:3px solid var(--turquesa);outline-offset:3px;border-radius:6px}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:var(--raio);font:700 15px Manrope,sans-serif;border:2px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn .ic{transition:transform .2s}.btn:hover .ic{transform:translateX(3px)}
+.btn-pri{background:linear-gradient(135deg,var(--turquesa),#27B0AA);color:var(--marinho-900);box-shadow:0 10px 30px -8px rgba(53,183,164,.7)}
+.btn-pri:hover{box-shadow:0 14px 36px -8px rgba(53,183,164,.9)}
+.btn-sec{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28);backdrop-filter:blur(6px)}
+.btn-sec:hover{background:rgba(255,255,255,.14)}
+.btn-esc{background:var(--marinho);color:#fff}
+.btn-esc:hover{background:var(--profundo)}
+.btn-lin{background:#fff;color:var(--marinho);border-color:var(--linha)}
+.btn-lin:hover{border-color:var(--petroleo)}
+
+/* navegação */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+.nav.solid{background:rgba(10,26,43,.82);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.nav .logo img{height:36px;width:auto}
+.nav ul{display:flex;gap:6px;list-style:none;padding:0}
+.nav ul a{display:block;padding:10px 14px;border-radius:10px;color:rgba(255,255,255,.82);font-weight:600;font-size:14.5px;transition:.2s}
+.nav ul a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav .btn{min-height:44px;padding:0 20px;font-size:14px}
+.burger{display:none;background:none;border:0;color:#fff;width:44px;height:44px;border-radius:10px;cursor:pointer}
+.burger .ic{width:26px;height:26px;margin:auto}
+
+/* hero */
+.hero{position:relative;background:var(--marinho-900);color:#fff;padding:150px 0 120px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:
+  radial-gradient(60% 55% at 85% 10%,rgba(53,183,164,.34),transparent 70%),
+  radial-gradient(50% 50% at 5% 90%,rgba(20,125,146,.5),transparent 70%),
+  radial-gradient(40% 40% at 50% 50%,rgba(32,48,86,.9),transparent 80%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 70% at 60% 40%,#000,transparent 80%)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;z-index:-1;animation:flutua 14s ease-in-out infinite}
+.orb.a{width:380px;height:380px;background:var(--petroleo);top:-120px;left:-100px}
+.orb.b{width:300px;height:300px;background:var(--turquesa);bottom:-120px;right:8%;animation-delay:-6s;opacity:.35}
+@keyframes flutua{50%{transform:translate(30px,40px) scale(1.1)}}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.selo{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);font-size:13.5px;font-weight:600;color:rgba(255,255,255,.9)}
+.selo b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--turquesa);color:var(--marinho-900)}
+.selo b .ic{width:14px;height:14px;stroke-width:3}
+.hero h1{font-size:clamp(36px,4.5vw,58px);font-weight:800;margin:24px 0 22px;letter-spacing:-.035em}
+.grad{background:linear-gradient(100deg,var(--turquesa-300),var(--turquesa) 45%,#7FD8F0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.78);max-width:34em}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.hero-pontos{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:40px;color:rgba(255,255,255,.72);font-size:14px;font-weight:500}
+.hero-pontos span{display:inline-flex;gap:8px;align-items:center}
+.hero-pontos .ic{color:var(--turquesa);width:18px;height:18px}
+
+/* mockup do produto */
+.palco{position:relative;perspective:1600px}
+.janela{background:#fff;color:var(--marinho);border-radius:var(--raio-xl);box-shadow:var(--sombra-forte),0 0 0 1px rgba(255,255,255,.12);overflow:hidden;transform:rotateY(-9deg) rotateX(4deg);transition:transform .6s;animation:entra 1s .2s both}
+.palco:hover .janela{transform:rotateY(-3deg) rotateX(1deg)}
+@keyframes entra{from{opacity:0;transform:translateY(40px) rotateY(-14deg)}}
+.j-barra{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--claro);border-bottom:1px solid var(--linha)}
+.j-barra i{width:11px;height:11px;border-radius:50%;background:#d6e2ea}
+.j-barra span{margin-left:10px;font-size:12px;font-weight:600;color:var(--texto)}
+.j-corpo{padding:20px}
+.j-titulo{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.j-titulo h4{font-size:17px;font-weight:800}
+.j-titulo small{color:var(--texto);font-weight:600;font-size:12px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.kpi{border:1px solid var(--linha);border-radius:var(--raio);padding:12px 14px}
+.kpi small{display:block;font-size:11px;color:var(--texto);font-weight:600}
+.kpi strong{font:800 24px Manrope;letter-spacing:-.03em}
+.kpi.ok strong{color:#17714A}.kpi.al strong{color:#8F5600}.kpi.pe strong{color:var(--petroleo-600)}
+.os{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--linha);border-radius:var(--raio);margin-top:8px;font-size:13px}
+.os .pl{font:800 12px Manrope;background:var(--marinho);color:#fff;border-radius:8px;padding:6px 9px;letter-spacing:.04em}
+.os div{flex:1;line-height:1.3}.os b{display:block;font-size:13px}.os span{color:var(--texto);font-size:12px}
+.bd{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:11.5px;font-weight:700;border:1px solid}
+.bd .ic{width:13px;height:13px;stroke-width:2.5}
+.bd.s{color:#17714A;background:#E4F4EC;border-color:#A7DCC3}
+.bd.a{color:#8F5600;background:#FFF3DC;border-color:#F5D08A}
+.bd.i{color:#0F6475;background:#EEFAF8;border-color:#A9E5DC}
+.flutua{position:absolute;background:#fff;color:var(--marinho);border-radius:var(--raio-lg);box-shadow:var(--sombra-forte);padding:12px 16px;display:flex;gap:12px;align-items:center;font-size:13px;line-height:1.3;animation:sobe 5s ease-in-out infinite}
+.flutua b{display:block;font:800 14px Manrope}.flutua span{color:var(--texto);font-size:12px}
+.flutua .bola{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--petroleo),var(--turquesa))}
+.flutua.f1{left:-44px;bottom:-30px}
+.flutua.f2{right:-14px;top:-26px;animation-delay:-2.5s}
+@keyframes sobe{50%{transform:translateY(-10px)}}
+
+/* faixa */
+.faixa{background:var(--claro);border-bottom:1px solid var(--linha)}
+.faixa .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;padding:26px 24px;color:var(--texto);font-weight:600;font-size:14.5px}
+.faixa span{display:inline-flex;gap:10px;align-items:center}.faixa .ic{color:var(--petroleo)}
+
+/* seções */
+section{padding:112px 0}
+.cab{max-width:760px;margin-bottom:56px}.cab.c{margin-inline:auto;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:800 12.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--petroleo);margin-bottom:14px}
+.eyebrow::before{content:"";width:26px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--petroleo),var(--turquesa))}
+.cab h2{font-size:clamp(30px,4vw,46px);font-weight:800}
+.cab p{margin-top:16px;color:var(--texto);font-size:18px}
+
+/* produtos */
+#produtos{background:#fff}
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{position:relative;border-radius:var(--raio-xl);padding:40px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px)}
+.card.esc{background:linear-gradient(160deg,var(--marinho),var(--marinho-900));color:#fff;box-shadow:var(--sombra-forte)}
+.card.esc::before{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-120px;background:radial-gradient(closest-side,rgba(53,183,164,.38),transparent);pointer-events:none}
+.card.cla{background:var(--claro);border:1px solid var(--linha)}
+.card.cla::before{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-120px;background:radial-gradient(closest-side,rgba(20,125,146,.16),transparent);pointer-events:none}
+.card .logo{height:46px;width:auto;align-self:flex-start;margin-bottom:26px}
+.card h3{font-size:28px;font-weight:800;margin-bottom:12px}
+.card>p{opacity:.85;font-size:16.5px;margin-bottom:26px}
+.card.cla>p{color:var(--texto);opacity:1}
+.lista{list-style:none;padding:0;display:grid;gap:12px;margin-bottom:34px;flex:1}
+.lista li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.lista .ic{margin-top:3px;color:var(--turquesa);width:19px;height:19px;stroke-width:2.6}
+.card.cla .lista .ic{color:var(--petroleo)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tag{padding:5px 12px;border-radius:99px;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+.card.cla .tag{background:#fff;border-color:var(--linha);color:var(--petroleo-600)}
+.card .btn{align-self:flex-start}
+.mais-prod{margin-top:28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:28px 36px;border-radius:var(--raio-xl);border:2px dashed #b9d3de;background:linear-gradient(90deg,#fff,var(--claro))}
+.mais-prod div{max-width:640px}.mais-prod h4{font-size:19px;font-weight:800;margin-bottom:4px}.mais-prod p{color:var(--texto);font-size:15px}
+
+/* o que entregamos */
+#entregamos{background:var(--claro)}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rec{background:#fff;border:1px solid var(--linha);border-radius:var(--raio-lg);padding:30px;transition:.3s;position:relative;overflow:hidden}
+.rec::after{content:"";position:absolute;inset:auto 0 0;height:4px;background:linear-gradient(90deg,var(--petroleo),var(--turquesa));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.rec:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:#b9d3de}.rec:hover::after{transform:scaleX(1)}
+.ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--petroleo),var(--turquesa));color:#fff;margin-bottom:20px;box-shadow:0 10px 22px -8px rgba(20,125,146,.6)}
+.ico .ic{width:26px;height:26px}
+.rec h3{font-size:19px;font-weight:800;margin-bottom:8px}.rec p{color:var(--texto);font-size:15px}
+
+/* fluxo */
+#fluxo{background:var(--marinho-900);color:#fff;position:relative;overflow:hidden}
+#fluxo::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 90% 0,rgba(53,183,164,.22),transparent 70%),radial-gradient(40% 50% at 0 100%,rgba(20,125,146,.35),transparent 70%)}
+#fluxo .wrap{position:relative}
+#fluxo .cab p{color:rgba(255,255,255,.72)}#fluxo .eyebrow{color:var(--turquesa)}
+.passos{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:p;position:relative}
+.passos::before{content:"";position:absolute;left:5%;right:5%;top:31px;height:2px;background:linear-gradient(90deg,var(--petroleo),var(--turquesa),var(--petroleo));opacity:.5}
+.passo{position:relative;text-align:center;padding:0 6px}
+.passo .n{width:62px;height:62px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--marinho);border:2px solid var(--turquesa);color:var(--turquesa);box-shadow:0 0 0 8px var(--marinho-900),0 0 30px rgba(53,183,164,.35);position:relative}
+.passo .n .ic{width:26px;height:26px}
+.passo h3{font-size:16.5px;font-weight:800;margin-bottom:6px}.passo p{font-size:14px;color:rgba(255,255,255,.7)}
+.regra{margin:56px auto 0;max-width:780px;display:flex;gap:16px;align-items:center;padding:22px 28px;border-radius:var(--raio-lg);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px)}
+.regra .ic{width:34px;height:34px;color:var(--turquesa)}.regra p{font-size:16px;color:rgba(255,255,255,.88)}
+
+/* para quem */
+.quem{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pq{padding:30px 26px;border-radius:var(--raio-lg);background:#fff;border:1px solid var(--linha);text-align:left;transition:.3s}
+.pq:hover{box-shadow:var(--sombra);transform:translateY(-5px)}
+.pq .ic{width:34px;height:34px;color:var(--petroleo);margin-bottom:16px}
+.pq h3{font-size:18px;font-weight:800;margin-bottom:6px}.pq p{font-size:14.5px;color:var(--texto)}
+
+/* diferenciais split */
+#diferenciais{background:var(--claro)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.split h2{font-size:clamp(30px,3.8vw,44px);font-weight:800;margin:6px 0 18px}
+.split>div>p{color:var(--texto);font-size:17.5px;margin-bottom:28px}
+.vant{list-style:none;padding:0;display:grid;gap:18px}
+.vant li{display:flex;gap:16px}
+.vant .ck{flex:none;width:30px;height:30px;border-radius:50%;background:#E4F4EC;color:#17714A;display:grid;place-items:center;margin-top:2px}
+.vant .ck .ic{width:16px;height:16px;stroke-width:3}
+.vant b{font:800 16.5px Manrope;display:block}.vant span{color:var(--texto);font-size:15px}
+.painel{background:var(--marinho);color:#fff;border-radius:var(--raio-xl);padding:34px;box-shadow:var(--sombra-forte);position:relative;overflow:hidden}
+.painel::before{content:"";position:absolute;width:300px;height:300px;right:-100px;top:-100px;background:radial-gradient(closest-side,rgba(53,183,164,.35),transparent)}
+.painel h4{font-size:15px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:22px;position:relative}
+.barra{margin-bottom:18px;position:relative}
+.barra div{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:7px}
+.barra i{display:block;height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.barra i::after{content:"";display:block;height:100%;width:var(--w);border-radius:99px;background:linear-gradient(90deg,var(--petroleo),var(--turquesa));transform-origin:left;transform:scaleX(0);transition:transform 1.2s .2s cubic-bezier(.2,.8,.2,1)}
+.vis .barra i::after{transform:scaleX(1)}
+.painel .nota{margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);font-size:13.5px;color:rgba(255,255,255,.65);position:relative}
+
+/* design system / qualidade */
+.paleta{display:flex;border-radius:var(--raio-lg);overflow:hidden;box-shadow:var(--sombra);height:96px;margin-top:30px}
+.paleta i{flex:1;display:flex;align-items:flex-end;padding:10px;font:700 11px Manrope;color:#fff;font-style:normal}
+.paleta i:nth-child(5){color:var(--marinho)}
+.mini3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.mini3 div{border:1px solid var(--linha);border-radius:var(--raio);padding:18px}
+.mini3 b{font:800 22px Manrope;color:var(--petroleo);display:block}.mini3 span{font-size:13.5px;color:var(--texto)}
+
+/* faq */
+#faq{background:#fff}
+.faq{max-width:820px;margin:0 auto;display:grid;gap:12px}
+details{border:1px solid var(--linha);border-radius:var(--raio);background:#fff;transition:.2s}
+details[open]{background:var(--claro);border-color:#b9d3de}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font:700 16.5px Manrope;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary .ic{transition:transform .25s;color:var(--petroleo)}details[open] summary .ic{transform:rotate(180deg)}
+details p{padding:0 24px 22px;color:var(--texto);font-size:15.5px}
+
+/* contato */
+#contato{background:linear-gradient(160deg,var(--marinho),var(--marinho-900));color:#fff;position:relative;overflow:hidden}
+#contato::before{content:"";position:absolute;inset:0;background:radial-gradient(45% 55% at 100% 0,rgba(53,183,164,.3),transparent 70%),radial-gradient(40% 50% at 0 100%,rgba(20,125,146,.45),transparent 70%)}
+#contato .wrap{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+#contato h2{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin:6px 0 18px}
+#contato .eyebrow{color:var(--turquesa)}
+#contato .sub{color:rgba(255,255,255,.76);font-size:18px;margin-bottom:34px}
+.canais{display:grid;gap:14px}
+.canal{display:flex;gap:16px;align-items:center;padding:16px 18px;border-radius:var(--raio);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);transition:.25s}
+a.canal:hover{background:rgba(255,255,255,.14);transform:translateX(6px)}
+.canal .ico{margin:0;width:46px;height:46px;border-radius:14px;box-shadow:none}
+.canal b{display:block;font:800 15.5px Manrope}.canal span{font-size:14px;color:rgba(255,255,255,.7)}
+form{background:#fff;color:var(--marinho);border-radius:var(--raio-xl);padding:36px;box-shadow:var(--sombra-forte);display:grid;gap:18px}
+form h3{font-size:22px;font-weight:800}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:7px;font:700 13.5px Manrope}
+input,select,textarea{font:400 15px Inter,sans-serif;color:var(--marinho);border:1.5px solid var(--linha);border-radius:var(--raio);padding:0 14px;min-height:48px;background:var(--claro);width:100%;transition:.2s}
+textarea{padding:12px 14px;min-height:112px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--petroleo);background:#fff;box-shadow:0 0 0 4px rgba(20,125,146,.15)}
+form .btn{width:100%}
+.ok-msg{display:none;padding:14px 16px;border-radius:var(--raio);background:#E4F4EC;border:1px solid #A7DCC3;color:#17714A;font-weight:600;font-size:14.5px}
+.ok-msg.on{display:block}
+.peq{font-size:12.5px;color:var(--texto)}
+
+/* rodapé */
+footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 32px;font-size:14.5px}
+.rod{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rod img{height:40px;width:auto;margin-bottom:16px}
+.rod h4{font:800 13px Manrope;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:16px}
+.rod ul{list-style:none;padding:0;display:grid;gap:10px}.rod a:hover{color:var(--turquesa)}
+.rod-fim{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;font-size:13px}
+
+/* revelar ao rolar */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.vis{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+@media (max-width:1020px){
+  .hero .wrap,.split,#contato .wrap{grid-template-columns:1fr}
+  .palco{max-width:560px;margin-inline:auto;width:100%}
+  .janela{transform:none;animation:none}
+  .grade{grid-template-columns:1fr 1fr}.quem{grid-template-columns:1fr 1fr}
+  .passos{grid-template-columns:1fr 1fr;row-gap:36px}.passos::before{display:none}
+  .rod{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  section{padding:76px 0}.hero{padding:118px 0 80px}
+  .prod,.grade,.quem,.dois,.mini3{grid-template-columns:1fr}
+  .card{padding:30px 24px}
+  .nav ul,.nav .btn.nv{display:none}.burger{display:grid}
+  .nav.aberto{background:var(--marinho-900)}
+  .nav.aberto ul{display:grid;position:absolute;top:72px;inset-inline:0;background:var(--marinho-900);padding:12px 24px 24px;gap:2px;border-top:1px solid rgba(255,255,255,.1)}
+  .flutua.f1{left:-6px;bottom:-26px}.flutua.f2{right:-4px;top:-44px}
+  .os div span{display:none}.os{padding:10px 12px;gap:8px}.os b{font-size:12.5px}.os .pl{font-size:11px;padding:5px 7px}.bd{padding:3px 8px;font-size:11px}.kpi small{font-size:10.5px}
+  .passos{grid-template-columns:1fr}
+  form{padding:26px 20px}
+  .rod{grid-template-columns:1fr}
+  .regra{flex-direction:column;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}.barra i::after{transform:scaleX(1)}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol><symbol id="i-clipboard-check" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  <path d="m9 14 2 2 4-4" /></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+  <circle cx="12" cy="13" r="3" /></symbol><symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M12 20h.01" />
+  <path d="M8.5 16.429a5 5 0 0 1 7 0" />
+  <path d="M5 12.859a10 10 0 0 1 5.17-2.69" />
+  <path d="M19 12.859a10 10 0 0 0-2.007-1.523" />
+  <path d="M2 8.82a15 15 0 0 1 4.177-2.643" />
+  <path d="M22 8.82a15 15 0 0 0-11.288-3.764" />
+  <path d="m2 2 20 20" /></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></symbol><symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+  <path d="M12 22V12" />
+  <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
+  <path d="m7.5 4.27 9 5.15" /></symbol><symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 17.5v-11" /></symbol><symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
+  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /></symbol><symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+  <path d="M15 18H9" />
+  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+  <circle cx="17" cy="18" r="2" />
+  <circle cx="7" cy="18" r="2" /></symbol><symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" /></symbol><symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3" />
+  <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+  <circle cx="18" cy="5" r="3" /></symbol><symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+  <path d="M12 18h.01" /></symbol><symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+  <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+  <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></symbol><symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" /></symbol><symbol id="i-building-2" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+  <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+  <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+  <path d="M10 6h4" />
+  <path d="M10 10h4" />
+  <path d="M10 14h4" />
+  <path d="M10 18h4" /></symbol><symbol id="i-factory" viewBox="0 0 24 24"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+  <path d="M17 18h1" />
+  <path d="M12 18h1" />
+  <path d="M7 18h1" /></symbol><symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3" />
+  <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+  <path d="m21 3 1 11h-2" />
+  <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+  <path d="M3 4h8" /></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" />
+  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol><symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></symbol><symbol id="i-message-circle" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></symbol><symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+  <path d="m21.854 2.147-10.94 10.939" /></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" /></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="m12 14 4-4" />
+  <path d="M3.34 19a10 10 0 1 1 17.32 0" /></symbol><symbol id="i-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M10 9H8" />
+  <path d="M16 13H8" />
+  <path d="M16 17H8" /></symbol><symbol id="i-chart-column" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" /></symbol><symbol id="i-radio-tower" viewBox="0 0 24 24"><path d="M4.9 16.1C1 12.2 1 5.8 4.9 1.9" />
+  <path d="M7.8 4.7a6.14 6.14 0 0 0-.8 7.5" />
+  <circle cx="12" cy="9" r="2" />
+  <path d="M16.2 4.8c2 2 2.26 5.11.8 7.47" />
+  <path d="M19.1 1.9a9.96 9.96 0 0 1 0 14.1" />
+  <path d="M9.5 18h5" />
+  <path d="m8 22 4-11 4 11" /></symbol><symbol id="i-qr-code" viewBox="0 0 24 24"><rect width="5" height="5" x="3" y="3" rx="1" />
+  <rect width="5" height="5" x="16" y="3" rx="1" />
+  <rect width="5" height="5" x="3" y="16" rx="1" />
+  <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+  <path d="M21 21v.01" />
+  <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+  <path d="M3 12h.01" />
+  <path d="M12 3h.01" />
+  <path d="M12 16v.01" />
+  <path d="M16 12h1" />
+  <path d="M21 12v.01" />
+  <path d="M12 21v-1" /></symbol><symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+  <path d="M3 3v5h5" />
+  <path d="M12 7v5l4 2" /></symbol><symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+  <circle cx="12" cy="12" r="3" /></symbol><symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12" />
+  <line x1="4" x2="20" y1="6" y2="6" />
+  <line x1="4" x2="20" y1="18" y2="18" /></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol><symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol><symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" /></symbol><symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+  <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+  <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+  <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" /></symbol><symbol id="i-ruler" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z" />
+  <path d="m14.5 12.5 2-2" />
+  <path d="m11.5 9.5 2-2" />
+  <path d="m8.5 6.5 2-2" />
+  <path d="m17.5 15.5 2-2" /></symbol><symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" /></symbol><symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2" />
+  <line x1="12" x2="15" y1="14" y2="11" />
+  <circle cx="12" cy="14" r="8" /></symbol><symbol id="i-scan-line" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2" />
+  <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+  <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+  <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+  <path d="M7 12h10" /></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4" />
+  <path d="M16 2v4" />
+  <rect width="18" height="18" x="3" y="4" rx="2" />
+  <path d="M3 10h18" /></symbol></svg>
+<a class="sr" href="#produtos">Ir para o conteúdo</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo" aria-label="NEXUM Systems, início"><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="36"></a>
+    <nav aria-label="Principal"><ul id="menu">
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#entregamos">O que entregamos</a></li>
+      <li><a href="#fluxo">Como funciona</a></li>
+      <li><a href="#diferenciais">Diferenciais</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul></nav>
+    <a class="btn btn-pri nv" href="#contato">Fale com a gente <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><svg class="ic"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main id="topo">
+<!-- HERO -->
+<section class="hero" style="padding-bottom:120px">
+  <span class="orb a"></span><span class="orb b"></span>
+  <div class="wrap">
+    <div>
+      <span class="selo"><b><svg class="ic"><use href="#i-check"/></svg></b>Sistemas feitos para a operação real</span>
+      <h1>Sua frota e sua oficina <span class="grad">sob controle</span>, do primeiro registro ao último pagamento.</h1>
+      <p class="lead">A NEXUM Systems cria sistemas de gestão para quem mantém e move veículos: checklist com prova em foto, ordens de serviço, estoque, financeiro, rastreamento e transporte de passageiros. Tudo no mesmo registro, funcionando até sem sinal.</p>
+      <div class="cta">
+        <a class="btn btn-pri" href="#produtos">Conhecer os sistemas <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-sec" href="#contato">Pedir uma apresentação</a>
+      </div>
+      <div class="hero-pontos">
+        <span><svg class="ic"><use href="#i-wifi-off"/></svg>Funciona offline</span>
+        <span><svg class="ic"><use href="#i-camera"/></svg>Foto com carimbo</span>
+        <span><svg class="ic"><use href="#i-smartphone"/></svg>Web e Android</span>
+      </div>
+    </div>
+
+    <div class="palco" aria-hidden="true">
+      <div class="janela">
+        <div class="j-barra"><i></i><i></i><i></i><span>NEXUM Inspect · Início</span></div>
+        <div class="j-corpo">
+          <div class="j-titulo"><h4>Painel da oficina</h4><small>hoje</small></div>
+          <div class="kpis">
+            <div class="kpi pe"><small>OS abertas</small><strong>12</strong></div>
+            <div class="kpi al"><small>Aguardando aprovação</small><strong>3</strong></div>
+            <div class="kpi ok"><small>Concluídas no mês</small><strong>48</strong></div>
+          </div>
+          <div class="os"><span class="pl">QRX-4F21</span><div><b>Troca de pastilhas e discos</b><span>Checklist de entrada · 6 fotos</span></div><span class="bd s"><svg class="ic"><use href="#i-circle-check"/></svg>Concluída</span></div>
+          <div class="os"><span class="pl">BRA-2E19</span><div><b>Revisão 40.000 km</b><span>Orçamento enviado à locadora</span></div><span class="bd a"><svg class="ic"><use href="#i-clock"/></svg>Aprovação</span></div>
+          <div class="os"><span class="pl">PJK-7C03</span><div><b>Diagnóstico de suspensão</b><span>Mecânico executando tarefas</span></div><span class="bd i"><svg class="ic"><use href="#i-wrench"/></svg>Em execução</span></div>
+        </div>
+      </div>
+      <div class="flutua f1"><span class="bola"><svg class="ic"><use href="#i-camera"/></svg></span><div><b>Foto carimbada</b><span>Data, hora, GPS e placa</span></div></div>
+      <div class="flutua f2"><span class="bola"><svg class="ic"><use href="#i-shield-check"/></svg></span><div><b>Parecer: Apto</b><span>Inspeção de saída</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="faixa"><div class="wrap">
+  <span><svg class="ic"><use href="#i-building-2"/></svg>Multiempresa com dados isolados</span>
+  <span><svg class="ic"><use href="#i-lock"/></svg>Perfis e permissões por função</span>
+  <span><svg class="ic"><use href="#i-wifi-off"/></svg>Offline-first</span>
+  <span><svg class="ic"><use href="#i-chart-column"/></svg>Pronto para Power BI</span>
+  <span><svg class="ic"><use href="#i-smartphone"/></svg>PWA e app Android</span>
+</div></div>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Nossos sistemas</span>
+      <h2>Dois produtos, uma só linguagem</h2>
+      <p>Cada sistema resolve um problema de frota de ponta a ponta. Mesma marca, mesmo padrão de uso e a possibilidade de contratar só o que você precisa.</p></div>
+
+    <div class="prod">
+      <article class="card esc rv">
+        <img class="logo" src="site/logos/nexum-inspect-escuro.svg" alt="NEXUM Inspect" height="46">
+        <h3>Checklist, OS e manutenção</h3>
+        <p>Oficina e contratante no mesmo registro. Do checklist offline à fatura paga, com prova em foto e tudo medido no tempo.</p>
+        <div class="tags"><span class="tag">Oficinas</span><span class="tag">Locadoras</span><span class="tag">Frotas</span></div>
+        <ul class="lista">
+          <li><svg class="ic"><use href="#i-check"/></svg>Checklist de entrada, saída e inspeção com parecer Apto, Ressalvas ou Inapto</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Foto com carimbo de hora, GPS e placa, e alerta de foto repetida</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Orçamento aprovado item a item e catálogo padronizado de peças e mão de obra</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Estoque, nota fiscal por XML, fatura mensal e histórico de cada veículo</li>
+        </ul>
+        <a class="btn btn-pri" href="#contato" data-prod="NEXUM Inspect">Quero conhecer o Inspect <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+      </article>
+
+      <article class="card cla rv d1">
+        <img class="logo" src="site/logos/nexum-fleet-claro.svg" alt="NEXUM Fleet" height="46">
+        <h3>Frota, telemetria e passageiros</h3>
+        <p>Da rota cadastrada ao ônibus no mapa, do embarque por crachá à medição do contrato. Um sistema só, vendido em módulos.</p>
+        <div class="tags"><span class="tag">Transportadoras</span><span class="tag">Mineradoras</span><span class="tag">Transporte coletivo</span></div>
+        <ul class="lista">
+          <li><svg class="ic"><use href="#i-check"/></svg>Frota ao vivo no mapa, trajeto por dia, paradas, excesso de velocidade e cercas</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Rotas, horários e embarque por crachá, com computador de bordo Android</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Portal do passageiro (PWA) e visão própria para a contratante</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Serviço completo: equipamento, software e monitoramento dos rastreadores</li>
+        </ul>
+        <a class="btn btn-esc" href="#contato" data-prod="NEXUM Fleet">Quero conhecer o Fleet <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+      </article>
+    </div>
+
+    <div class="mais-prod rv">
+      <div><h4>Precisa de algo sob medida?</h4><p>Dashboards em Power BI, integrações com rastreadores e automações para o seu setor. Conte o desafio e a gente desenha a solução.</p></div>
+      <a class="btn btn-lin" href="#contato" data-prod="Projeto sob medida">Falar sobre meu projeto <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE ENTREGAMOS -->
+<section id="entregamos">
+  <div class="wrap">
+    <div class="cab rv"><span class="eyebrow">O que entregamos</span>
+      <h2>Menos planilha, menos WhatsApp, mais prova</h2>
+      <p>O que o seu time registra no dia a dia vira controle, histórico e decisão, sem retrabalho de digitação.</p></div>
+    <div class="grade">
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist que não se perde</h3><p>Itens OK, Não OK e N/A, item crítico que reprova a inspeção e checklists personalizáveis por empresa, com versões.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-camera"/></svg></div><h3>Provas que não se fraudam</h3><p>Carimbo dentro da foto, detecção de imagem repetida e alerta de retrabalho quando a mesma peça é trocada em pouco tempo.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento e aprovação</h3><p>A contratante aprova ou contesta item a item. Cliente direto aprova por link, sem precisar de login.</p></div>
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-package"/></svg></div><h3>Estoque visual</h3><p>Nível, cobertura em dias, curva ABC e baixa automática ao usar a peça na OS. Catálogo padronizado, sem texto livre.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota fiscal e financeiro</h3><p>Leitura do XML da NF-e, conciliação por OS, fatura mensal automática e controle do que está a pagar, vencido e pago.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Tempo medido de verdade</h3><p>Cada mudança de situação grava data e hora. Veículo parado, prazo de aprovação e SLA ficam visíveis em painéis.</p></div>
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-map-pin"/></svg></div><h3>Frota ao vivo</h3><p>Posição, trajeto, paradas, velocidade e cercas em um mapa, com a Central NEXUM de olho nos rastreadores.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-qr-code"/></svg></div><h3>Embarque por crachá</h3><p>Leitor RFID ou selo digital registra quem embarcou e desembarcou, mesmo sem sinal, e sincroniza depois.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Dados prontos para BI</h3><p>Views preparadas para Power BI e relatórios em PDF para levar o resultado à reunião de contrato.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO -->
+<section id="fluxo">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Como funciona</span>
+      <h2>O caminho de uma ordem de serviço</h2>
+      <p>Um fluxo claro, em que cada etapa tem responsável, hora registrada e evidência.</p></div>
+    <div class="passos">
+      <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-calendar"/></svg></div><h3>Agendar</h3><p>Veículo entra na parada e a OS é aberta para a oficina.</p></div>
+      <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist de entrada</h3><p>Estado do veículo registrado com foto, offline se for preciso.</p></div>
+      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento aprovado</h3><p>Nada é executado sem aprovação. Só o aprovado vira tarefa.</p></div>
+      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-wrench"/></svg></div><h3>Execução e saída</h3><p>Mecânico executa com foto por tarefa e checklist de saída.</p></div>
+      <div class="passo rv d4"><div class="n"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota e fatura</h3><p>NF-e conciliada, fatura do mês e pagamento registrado.</p></div>
+    </div>
+    <div class="regra rv"><svg class="ic"><use href="#i-shield-check"/></svg><p><b>Nada é executado sem aprovação.</b> A execução só começa com o orçamento aprovado, e a contratante enxerga tudo no mesmo registro da oficina.</p></div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section id="paraquem">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Para quem</span>
+      <h2>Feito para quem vive de veículo rodando</h2></div>
+    <div class="quem">
+      <div class="pq rv"><svg class="ic"><use href="#i-wrench"/></svg><h3>Oficinas</h3><p>Controle OS, peças, estoque, notas e o histórico de cada cliente em um lugar só.</p></div>
+      <div class="pq rv d1"><svg class="ic"><use href="#i-truck"/></svg><h3>Locadoras e frotas</h3><p>Acompanhe cada parada, aprove orçamentos e saiba quanto tempo o veículo ficou sem rodar.</p></div>
+      <div class="pq rv d2"><svg class="ic"><use href="#i-route"/></svg><h3>Transportadoras</h3><p>Rotas, motoristas, rastreamento e medição do contrato com a contratante.</p></div>
+      <div class="pq rv d3"><svg class="ic"><use href="#i-factory"/></svg><h3>Mineradoras e contratantes</h3><p>Visão própria para auditar, aprovar e medir serviços prestados por terceiros.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="wrap split">
+    <div class="rv">
+      <span class="eyebrow">Por que NEXUM</span>
+      <h2>Pensado para o campo, não só para o escritório</h2>
+      <p>Pátio de oficina, estrada e mina têm sinal ruim. Por isso os nossos sistemas foram desenhados para continuar funcionando e sincronizar depois.</p>
+      <ul class="vant">
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Offline de verdade</b><span>Checklist e embarques ficam no aparelho e sincronizam sozinhos, sem duplicar nem perder dados.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Cada cliente isolado</b><span>Multiempresa com perfis de acesso: ninguém vê o que não é seu.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Serviço completo</b><span>No Fleet, a NEXUM entrega equipamento, software e acompanhamento da operação.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Visual profissional e acessível</b><span>Design System próprio, com contraste, foco visível e botões grandes para uso com luva e sol forte.</span></div></li>
+      </ul>
+    </div>
+    <div class="rv d2" id="painelbar">
+      <div class="painel">
+        <h4>O que o sistema acompanha na parada</h4>
+        <div class="barra"><div><span>Checklists com evidência</span><span>Foto com carimbo</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Orçamento aprovado antes da execução</span><span>Regra obrigatória</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Peças e serviços do catálogo</span><span>Sem texto livre</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Tempo registrado automaticamente</span><span>Sem digitação</span></div><i style="--w:100%"></i></div>
+        <p class="nota">Ilustração do comportamento do sistema: regras que o NEXUM Inspect aplica em toda ordem de serviço.</p>
+      </div>
+      <div class="paleta" role="img" aria-label="Paleta da marca NEXUM">
+        <i style="background:#142B45">Marinho</i><i style="background:#203056">Profundo</i><i style="background:#147D92">Petróleo</i><i style="background:#35B7A4">Turquesa</i><i style="background:#F3F8F8">Claro</i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
+    <div class="faq rv">
+      <details><summary>O sistema funciona sem internet?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. No Inspect, o checklist e o registro de tarefas ficam salvos no aparelho e sincronizam quando o sinal volta, sem duplicar nada. No Fleet, o computador de bordo registra embarques e posição e envia depois.</p></details>
+      <details><summary>Preciso contratar tudo junto?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Não. Os sistemas são independentes e, dentro do Fleet, os módulos são vendidos separadamente: o cliente contrata o que precisa e o sistema esconde o resto.</p></details>
+      <details><summary>Funciona no celular?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. Os dois sistemas abrem no navegador e instalam como aplicativo (PWA). Também há versões Android para o dia a dia de campo.</p></details>
+      <details><summary>Meus dados ficam misturados com os de outras empresas?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Não. Cada empresa enxerga apenas os próprios dados, com perfis de acesso por função (como inspetor, mecânico, gestor e administrador).</p></details>
+      <details><summary>Dá para levar os dados para o Power BI?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. O Inspect já traz views preparadas para Power BI, e também fazemos dashboards e integrações sob medida.</p></details>
+      <details><summary>Como começo?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Envie uma mensagem pelo formulário abaixo contando o seu cenário. Retornamos para marcar uma apresentação do sistema que mais faz sentido para você.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Contato</span>
+      <h2>Vamos colocar a sua operação sob controle?</h2>
+      <p class="sub">Conte o seu cenário e a gente mostra, na prática, como o sistema encaixa no seu dia a dia.</p>
+      <div class="canais">
+        <a class="canal" id="cEmail" href="#"><span class="ico"><svg class="ic"><use href="#i-mail"/></svg></span><div><b>E-mail</b><span id="tEmail">contato@nexumsystems.com.br</span></div></a>
+        <a class="canal" id="cZap" href="#"><span class="ico"><svg class="ic"><use href="#i-message-circle"/></svg></span><div><b>WhatsApp</b><span>Fale direto com a equipe</span></div></a>
+        <div class="canal"><span class="ico"><svg class="ic"><use href="#i-clock"/></svg></span><div><b>Retorno rápido</b><span>Respondemos em dias úteis</span></div></div>
+      </div>
+    </div>
+
+    <form class="rv d1" id="form" novalidate>
+      <h3>Peça uma apresentação</h3>
+      <div class="dois">
+        <label>Seu nome<input name="nome" required autocomplete="name" placeholder="Maria Souza"></label>
+        <label>Empresa<input name="empresa" autocomplete="organization" placeholder="Nome da empresa"></label>
+      </div>
+      <div class="dois">
+        <label>E-mail<input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br"></label>
+        <label>Telefone / WhatsApp<input name="tel" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></label>
+      </div>
+      <label>Tenho interesse em
+        <select name="produto" id="produto">
+          <option>NEXUM Inspect</option><option>NEXUM Fleet</option><option>Os dois sistemas</option><option>Projeto sob medida</option><option>Outro assunto</option>
+        </select></label>
+      <label>Conte um pouco do seu cenário<textarea name="msg" placeholder="Quantos veículos, que tipo de operação, o que hoje dá mais trabalho…"></textarea></label>
+      <button class="btn btn-pri" type="submit">Enviar mensagem <svg class="ic"><use href="#i-send"/></svg></button>
+      <p class="ok-msg" id="ok" role="status"></p>
+      <p class="peq">Ao enviar, abrimos o seu aplicativo de e-mail com a mensagem pronta. Usamos seus dados apenas para responder ao contato.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="rod">
+      <div><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="40"><p>Sistemas de gestão para oficinas, frotas e transporte. Simples de usar, rigorosos nos registros.</p></div>
+      <div><h4>Produtos</h4><ul><li><a href="#produtos">NEXUM Inspect</a></li><li><a href="#produtos">NEXUM Fleet</a></li><li><a href="#contato">Projeto sob medida</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="#entregamos">O que entregamos</a></li><li><a href="#fluxo">Como funciona</a></li><li><a href="#paraquem">Para quem</a></li></ul></div>
+      <div><h4>Ajuda</h4><ul><li><a href="#faq">Perguntas frequentes</a></li><li><a href="#contato">Contato</a></li></ul></div>
+    </div>
+    <div class="rod-fim"><span>© <span id="ano">2026</span> NEXUM Systems. Todos os direitos reservados.</span><span>Feito com o NEXUM Design System</span></div>
+  </div>
+</footer>
+
+<script>
+/* ===== CONFIGURE AQUI SEUS CANAIS DE CONTATO ===== */
+var CONTATO_EMAIL = "contato@nexumsystems.com.br";
+var CONTATO_WHATSAPP = "";  /* somente números com DDI e DDD, ex.: 5594999999999 */
+/* ================================================= */
+
+(function(){
+  var nav=document.getElementById('nav'),b=document.getElementById('burger');
+  function sc(){nav.classList.toggle('solid',scrollY>20)} sc(); addEventListener('scroll',sc,{passive:true});
+  b.addEventListener('click',function(){var o=nav.classList.toggle('aberto');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')});
+  document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('aberto')})});
+
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(el){io.observe(el)});
+  } else els.forEach(function(el){el.classList.add('vis')});
+
+  document.getElementById('ano').textContent=new Date().getFullYear();
+  var te=document.getElementById('tEmail'),ce=document.getElementById('cEmail'),cz=document.getElementById('cZap');
+  te.textContent=CONTATO_EMAIL; ce.href='mailto:'+CONTATO_EMAIL;
+  if(CONTATO_WHATSAPP){cz.href='https://wa.me/'+CONTATO_WHATSAPP}else{cz.style.display='none'}
+
+  document.querySelectorAll('[data-prod]').forEach(function(a){a.addEventListener('click',function(){
+    var s=document.getElementById('produto'),v=a.getAttribute('data-prod');
+    for(var i=0;i<s.options.length;i++){if(s.options[i].text===v)s.selectedIndex=i}
+  })});
+
+  var f=document.getElementById('form'),ok=document.getElementById('ok');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(f);
+    if(!d.get('nome').trim()||!/^\S+@\S+\.\S+$/.test(d.get('email'))){
+      ok.className='ok-msg on';ok.style.cssText='background:#FDECEC;border-color:#F2B8B8;color:#B02E2E';
+      ok.textContent='Informe seu nome e um e-mail válido para continuarmos.';return}
+    ok.style.cssText='';
+    var corpo='Nome: '+d.get('nome')+'\nEmpresa: '+d.get('empresa')+'\nE-mail: '+d.get('email')+'\nTelefone: '+d.get('tel')+'\nInteresse: '+d.get('produto')+'\n\n'+d.get('msg');
+    location.href='mailto:'+CONTATO_EMAIL+'?subject='+encodeURIComponent('Contato pelo site: '+d.get('produto'))+'&body='+encodeURIComponent(corpo);
+    ok.className='ok-msg on';ok.textContent='Pronto! Abrimos o seu aplicativo de e-mail com a mensagem preparada. É só enviar.';
+  });
+})();
+</script>
+</body>
+</html>
