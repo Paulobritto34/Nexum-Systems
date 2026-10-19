@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Nexum Design System/assets/logos/nexum-systems-claro.svg" alt="NEXUM Systems" height="72">
+<img src="site/logos/nexum-systems-claro.svg" alt="NEXUM Systems" height="72">
 
 ### Sistemas de gestão para oficinas, frotas e transporte
 **Checklist com prova em foto, ordens de serviço, estoque, financeiro, rastreamento e passageiros.** Tudo no mesmo registro, funcionando até sem sinal.
