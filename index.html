@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NEXUM Systems | Sistemas para oficinas, frotas e transporte</title>
-<meta name="description" content="NEXUM Systems cria sistemas de gestão para quem mantém e move frotas: NEXUM Inspect (checklist, OS e manutenção) e NEXUM Fleet (frota, telemetria e passageiros).">
+<title>NEXUM Systems | Frota, passageiros e oficina sob controle</title>
+<meta name="description" content="NEXUM Fleet: rotas, passageiros, computador de bordo, rastreamento e medição do contrato em um só sistema. NEXUM Inspect: checklist com prova em foto, ordens de serviço e manutenção. Peça uma apresentação.">
+<meta property="og:title" content="NEXUM Systems | Frota, passageiros e oficina sob controle">
+<meta property="og:description" content="Do cadastro da rota à medição do contrato. Do checklist à fatura paga. Sistemas que funcionam até sem sinal.">
+<meta property="og:type" content="website">
 <meta name="theme-color" content="#142B45">
 <link rel="icon" type="image/svg+xml" href="site/nexum-icone.svg">
 <style>
@@ -256,6 +259,83 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 .rv.vis{opacity:1;transform:none}
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
 
+
+/* ===== v2: abas do hero, mapa, comparativo, módulos, números ===== */
+.abas{display:inline-flex;gap:6px;padding:5px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);margin-bottom:22px}
+.abas button{font:700 13.5px Manrope,sans-serif;color:rgba(255,255,255,.78);background:none;border:0;border-radius:10px;padding:0 18px;min-height:40px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.abas button[aria-selected=true]{background:linear-gradient(135deg,var(--turquesa),#27B0AA);color:var(--marinho-900)}
+.abas button:not([aria-selected=true]):hover{background:rgba(255,255,255,.12);color:#fff}
+.pane[hidden]{display:none}
+.mapa{position:relative;border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;background:#E9F3F5;margin-bottom:14px}
+.mapa svg{width:100%;height:auto}
+.mapa .leg{position:absolute;left:10px;top:10px;display:flex;gap:6px}
+.mapa .leg span{font:700 11px Manrope;background:#fff;border:1px solid var(--linha);border-radius:99px;padding:3px 10px;display:inline-flex;gap:6px;align-items:center}
+.mapa .leg i{width:8px;height:8px;border-radius:50%;background:#1FA774}.mapa .leg i.cz{background:#9AA8B5}
+.pulso{animation:pulso 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulso{0%{transform:scale(1);opacity:.55}100%{transform:scale(3.2);opacity:0}}
+.ocup{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--linha);border-radius:var(--raio);margin-top:8px;font-size:13px}
+.ocup b{font:800 13px Manrope;min-width:64px}.ocup .tr{flex:1;height:8px;border-radius:99px;background:#E3EDF2;overflow:hidden}
+.ocup .tr i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--petroleo),var(--turquesa))}
+.ocup .tr i.cheia{background:linear-gradient(90deg,#E3A220,#D17A00)}
+.ocup span.n{font:700 12px Manrope;color:var(--texto);min-width:44px;text-align:right}
+
+.selo-dest{align-self:flex-start;display:inline-block;margin-bottom:16px;padding:5px 14px;border-radius:99px;font:800 11.5px Manrope;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(135deg,var(--turquesa),#27B0AA);color:var(--marinho-900)}
+.card.destaque{outline:3px solid var(--turquesa);outline-offset:-3px}
+
+/* comparativo */
+#dores{background:var(--claro)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.vs>div{border-radius:var(--raio-xl);padding:36px}
+.vs .sem{background:#fff;border:1px solid var(--linha)}
+.vs .com{background:linear-gradient(160deg,var(--marinho),var(--marinho-900));color:#fff;box-shadow:var(--sombra-forte)}
+.vs h3{font-size:22px;font-weight:800;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.vs ul{list-style:none;padding:0;display:grid;gap:16px}
+.vs li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px}
+.vs .sem li{color:var(--texto)}.vs .com li{color:rgba(255,255,255,.88)}
+.vs li .ic{margin-top:3px;width:20px;height:20px;stroke-width:2.6}
+.vs .sem .ic{color:#B25B00}.vs .com .ic{color:var(--turquesa)}
+.vs .sem h3 .ic{color:#B25B00}.vs .com h3 .ic{color:var(--turquesa)}
+
+/* fleet */
+#fleet{background:#fff}
+.modulos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:22px}
+.mod{border-radius:var(--raio-xl);padding:32px;background:linear-gradient(160deg,var(--marinho),var(--marinho-900));color:#fff;position:relative;overflow:hidden}
+.mod::before{content:"";position:absolute;width:260px;height:260px;right:-90px;top:-90px;background:radial-gradient(closest-side,rgba(53,183,164,.35),transparent)}
+.mod .ico{position:relative}.mod h3{font-size:21px;font-weight:800;margin-bottom:8px;position:relative}.mod p{color:rgba(255,255,255,.78);font-size:15px;position:relative;margin-bottom:16px}
+.mod ul{list-style:none;padding:0;display:grid;gap:8px;position:relative}.mod li{display:flex;gap:10px;font-size:14px;color:rgba(255,255,255,.88)}.mod li .ic{width:16px;height:16px;margin-top:4px;color:var(--turquesa);stroke-width:3}
+.grade.g4{grid-template-columns:repeat(4,1fr)}
+.rec.m h3{font-size:17px}.rec.m p{font-size:14.5px}
+.rec.m .ico{width:46px;height:46px;border-radius:14px;margin-bottom:16px}.rec.m .ico .ic{width:22px;height:22px}
+
+/* números */
+.nums{background:var(--marinho-900);color:#fff;padding:64px 0}
+.nums .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.nums b{display:block;font:800 clamp(34px,4vw,52px) Manrope;letter-spacing:-.04em;background:linear-gradient(100deg,var(--turquesa-300),var(--turquesa));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nums span{color:rgba(255,255,255,.75);font-size:15px}
+
+/* cta de meio */
+.meio{padding:80px 0;background:linear-gradient(120deg,var(--petroleo-600),var(--petroleo) 55%,#1c9aa0);color:#fff;position:relative;overflow:hidden}
+.meio::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(60% 100% at 80% 50%,#000,transparent)}
+.meio .wrap{position:relative;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.meio h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;max-width:21em}.meio p{margin-top:10px;color:rgba(255,255,255,.88);font-size:17px;max-width:34em}
+
+/* passos claros (Inspect) */
+.passos.lt::before{background:linear-gradient(90deg,var(--petroleo),var(--turquesa),var(--petroleo))}
+.passos.lt .passo .n{background:#fff;box-shadow:0 0 0 8px var(--claro),0 8px 20px rgba(20,125,146,.2);color:var(--petroleo);border-color:var(--petroleo)}
+.passos.lt .passo p{color:var(--texto)}
+.subtit{margin:72px 0 36px;text-align:center}.subtit h3{font-size:clamp(22px,2.6vw,30px);font-weight:800}.subtit p{color:var(--texto);margin-top:8px}
+#inspect{background:var(--claro)}
+#fluxo .passos.seis{grid-template-columns:repeat(6,1fr)}
+.painel .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;position:relative}
+.painel .sub-t{font:800 11.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--turquesa);margin:0 0 14px;position:relative}
+.painel .sub-t:not(:first-of-type){margin-top:26px}
+
+@media (max-width:1020px){
+  .modulos{grid-template-columns:1fr}.grade.g4{grid-template-columns:1fr 1fr}.nums .wrap{grid-template-columns:1fr 1fr}.vs{grid-template-columns:1fr}
+  #fluxo .passos.seis{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){.grade.g4{grid-template-columns:1fr}.nums .wrap{grid-template-columns:1fr 1fr;gap:28px 16px}.meio .wrap{flex-direction:column;align-items:flex-start}#fluxo .passos.seis{grid-template-columns:1fr}.abas{width:100%}.abas button{flex:1;justify-content:center}.vs>div{padding:26px 22px}}
+
 @media (max-width:1020px){
   .hero .wrap,.split,#contato .wrap{grid-template-columns:1fr}
   .palco{max-width:560px;margin-inline:auto;width:100%}
@@ -271,7 +351,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   .nav ul,.nav .btn.nv{display:none}.burger{display:grid}
   .nav.aberto{background:var(--marinho-900)}
   .nav.aberto ul{display:grid;position:absolute;top:72px;inset-inline:0;background:var(--marinho-900);padding:12px 24px 24px;gap:2px;border-top:1px solid rgba(255,255,255,.1)}
-  .flutua.f1{left:-6px;bottom:-26px}.flutua.f2{right:-4px;top:-44px}
+  .flutua.f1{left:-6px;bottom:-26px}.flutua.f2{display:none}
   .os div span{display:none}.os{padding:10px 12px;gap:8px}.os b{font-size:12.5px}.os .pl{font-size:11px;padding:5px 7px}.bd{padding:3px 8px;font-size:11px}.kpi small{font-size:10.5px}
   .passos{grid-template-columns:1fr}
   form{padding:26px 20px}
@@ -386,7 +466,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <path d="M7 12h10" /></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4" />
   <path d="M16 2v4" />
   <rect width="18" height="18" x="3" y="4" rx="2" />
-  <path d="M3 10h18" /></symbol></svg>
+  <path d="M3 10h18" /></symbol><symbol id="i-bus" viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol><symbol id="i-triangle-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol></svg>
 <a class="sr" href="#produtos">Ir para o conteúdo</a>
 
 <header class="nav" id="nav">
@@ -394,12 +474,12 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
     <a class="logo" href="#topo" aria-label="NEXUM Systems, início"><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="36"></a>
     <nav aria-label="Principal"><ul id="menu">
       <li><a href="#produtos">Produtos</a></li>
-      <li><a href="#entregamos">O que entregamos</a></li>
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#inspect">Inspect</a></li>
       <li><a href="#fluxo">Como funciona</a></li>
-      <li><a href="#diferenciais">Diferenciais</a></li>
       <li><a href="#faq">Dúvidas</a></li>
-    </ul></nav>
-    <a class="btn btn-pri nv" href="#contato">Fale com a gente <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+    </</ul></nav>
+    <a class="btn btn-pri nv" href="#contato">Pedir apresentação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><svg class="ic"><use href="#i-menu"/></svg></button>
   </div>
 </header>
@@ -410,37 +490,79 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <span class="orb a"></span><span class="orb b"></span>
   <div class="wrap">
     <div>
-      <span class="selo"><b><svg class="ic"><use href="#i-check"/></svg></b>Sistemas feitos para a operação real</span>
-      <h1>Sua frota e sua oficina <span class="grad">sob controle</span>, do primeiro registro ao último pagamento.</h1>
-      <p class="lead">A NEXUM Systems cria sistemas de gestão para quem mantém e move veículos: checklist com prova em foto, ordens de serviço, estoque, financeiro, rastreamento e transporte de passageiros. Tudo no mesmo registro, funcionando até sem sinal.</p>
+      <span class="selo"><b><svg class="ic"><use href="#i-check"/></svg></b>Feito para a operação real, no campo e na mina</span>
+      <h1>Cada rota, cada passageiro e cada veículo <span class="grad">sob controle</span>.</h1>
+      <p class="lead">O NEXUM Fleet leva o transporte coletivo do cadastro da rota à medição do contrato, com rastreamento, computador de bordo e portal do passageiro. O NEXUM Inspect cuida da oficina: checklist com prova em foto, ordens de serviço e fatura. Tudo registrado, até sem sinal.</p>
       <div class="cta">
-        <a class="btn btn-pri" href="#produtos">Conhecer os sistemas <svg class="ic"><use href="#i-arrow-right"/></svg></a>
-        <a class="btn btn-sec" href="#contato">Pedir uma apresentação</a>
+        <a class="btn btn-pri" href="#contato" data-prod="NEXUM Fleet">Pedir uma apresentação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-sec" href="#fleet">Ver o NEXUM Fleet</a>
       </div>
       <div class="hero-pontos">
         <span><svg class="ic"><use href="#i-wifi-off"/></svg>Funciona offline</span>
-        <span><svg class="ic"><use href="#i-camera"/></svg>Foto com carimbo</span>
+        <span><svg class="ic"><use href="#i-map-pin"/></svg>Frota ao vivo</span>
         <span><svg class="ic"><use href="#i-smartphone"/></svg>Web e Android</span>
       </div>
     </div>
 
-    <div class="palco" aria-hidden="true">
-      <div class="janela">
-        <div class="j-barra"><i></i><i></i><i></i><span>NEXUM Inspect · Início</span></div>
-        <div class="j-corpo">
-          <div class="j-titulo"><h4>Painel da oficina</h4><small>hoje</small></div>
-          <div class="kpis">
-            <div class="kpi pe"><small>OS abertas</small><strong>12</strong></div>
-            <div class="kpi al"><small>Aguardando aprovação</small><strong>3</strong></div>
-            <div class="kpi ok"><small>Concluídas no mês</small><strong>48</strong></div>
-          </div>
-          <div class="os"><span class="pl">QRX-4F21</span><div><b>Troca de pastilhas e discos</b><span>Checklist de entrada · 6 fotos</span></div><span class="bd s"><svg class="ic"><use href="#i-circle-check"/></svg>Concluída</span></div>
-          <div class="os"><span class="pl">BRA-2E19</span><div><b>Revisão 40.000 km</b><span>Orçamento enviado à locadora</span></div><span class="bd a"><svg class="ic"><use href="#i-clock"/></svg>Aprovação</span></div>
-          <div class="os"><span class="pl">PJK-7C03</span><div><b>Diagnóstico de suspensão</b><span>Mecânico executando tarefas</span></div><span class="bd i"><svg class="ic"><use href="#i-wrench"/></svg>Em execução</span></div>
-        </div>
+    <div>
+      <div class="abas" role="tablist" aria-label="Escolha o sistema para visualizar">
+        <button role="tab" id="t-fleet" aria-selected="true" aria-controls="p-fleet"><svg class="ic"><use href="#i-bus"/></svg>Fleet</button>
+        <button role="tab" id="t-inspect" aria-selected="false" aria-controls="p-inspect" tabindex="-1"><svg class="ic"><use href="#i-wrench"/></svg>Inspect</button>
       </div>
-      <div class="flutua f1"><span class="bola"><svg class="ic"><use href="#i-camera"/></svg></span><div><b>Foto carimbada</b><span>Data, hora, GPS e placa</span></div></div>
-      <div class="flutua f2"><span class="bola"><svg class="ic"><use href="#i-shield-check"/></svg></span><div><b>Parecer: Apto</b><span>Inspeção de saída</span></div></div>
+
+      <div class="palco pane" id="p-fleet" role="tabpanel" aria-labelledby="t-fleet">
+        <div class="janela" aria-hidden="true">
+          <div class="j-barra"><i></i><i></i><i></i><span>NEXUM Fleet · Mapa online</span></div>
+          <div class="j-corpo">
+            <div class="j-titulo"><h4>Frota em tempo real</h4><small>atualiza a cada 10 s</small></div>
+            <div class="mapa">
+              <svg viewBox="0 0 400 190" role="img" aria-label="Mapa ilustrativo com rotas e veículos">
+                <rect width="400" height="190" fill="#E9F3F5"/>
+                <path d="M0 150 C80 130 120 170 200 140 S340 90 400 110" stroke="#fff" stroke-width="14" fill="none"/>
+                <path d="M60 0 C70 60 110 90 130 190" stroke="#fff" stroke-width="10" fill="none"/>
+                <path d="M300 0 C290 50 330 100 310 190" stroke="#fff" stroke-width="10" fill="none"/>
+                <path d="M20 40 C120 20 160 80 250 60 S360 30 392 70" stroke="#fff" stroke-width="8" fill="none"/>
+                <path d="M24 148 C84 128 124 168 200 140 S330 92 380 108" stroke="#147D92" stroke-width="4" fill="none" stroke-dasharray="1 0"/>
+                <path d="M26 44 C120 24 160 80 250 62 S350 32 380 66" stroke="#35B7A4" stroke-width="4" fill="none" stroke-dasharray="8 6"/>
+                <g fill="#fff" stroke="#147D92" stroke-width="3"><circle cx="24" cy="148" r="5"/><circle cx="110" cy="152" r="5"/><circle cx="200" cy="140" r="5"/><circle cx="290" cy="108" r="5"/><circle cx="380" cy="108" r="5"/></g>
+                <g fill="#fff" stroke="#35B7A4" stroke-width="3"><circle cx="26" cy="44" r="5"/><circle cx="130" cy="44" r="5"/><circle cx="250" cy="62" r="5"/><circle cx="380" cy="66" r="5"/></g>
+                <circle class="pulso" cx="158" cy="154" r="8" fill="#1FA774"/><circle cx="158" cy="154" r="9" fill="#1FA774" stroke="#fff" stroke-width="3"/>
+                <circle class="pulso" cx="300" cy="46" r="8" fill="#1FA774" style="animation-delay:-1s"/><circle cx="300" cy="46" r="9" fill="#1FA774" stroke="#fff" stroke-width="3"/>
+                <circle cx="236" cy="124" r="9" fill="#9AA8B5" stroke="#fff" stroke-width="3"/>
+              </svg>
+              <div class="leg"><span><i></i>Online 18</span><span><i class="cz"></i>Sem sinal 2</span></div>
+            </div>
+            <div class="kpis">
+              <div class="kpi pe"><small>Em viagem</small><strong>18</strong></div>
+              <div class="kpi ok"><small>Ocupação média</small><strong>87%</strong></div>
+              <div class="kpi al"><small>Alertas abertos</small><strong>2</strong></div>
+            </div>
+            <div class="ocup"><b>TC24 · A</b><span class="tr"><i style="width:89%"></i></span><span class="n">41/46</span></div>
+            <div class="ocup"><b>TC24 · B</b><span class="tr"><i class="cheia" style="width:100%"></i></span><span class="n">46/46</span></div>
+          </div>
+        </div>
+        <div class="flutua f1"><span class="bola"><svg class="ic"><use href="#i-qr-code"/></svg></span><div><b>Embarque por crachá</b><span>41 de 44 a bordo</span></div></div>
+        <div class="flutua f2"><span class="bola"><svg class="ic"><use href="#i-bell"/></svg></span><div><b>Checklist inapto</b><span>Alerta ao programador</span></div></div>
+      </div>
+
+      <div class="palco pane" id="p-inspect" role="tabpanel" aria-labelledby="t-inspect" hidden>
+        <div class="janela" aria-hidden="true">
+          <div class="j-barra"><i></i><i></i><i></i><span>NEXUM Inspect · Início</span></div>
+          <div class="j-corpo">
+            <div class="j-titulo"><h4>Painel da oficina</h4><small>hoje</small></div>
+            <div class="kpis">
+              <div class="kpi pe"><small>OS abertas</small><strong>12</strong></div>
+              <div class="kpi al"><small>Aguardando aprovação</small><strong>3</strong></div>
+              <div class="kpi ok"><small>Concluídas no mês</small><strong>48</strong></div>
+            </div>
+            <div class="os"><span class="pl">QRX-4F21</span><div><b>Troca de pastilhas e discos</b><span>Checklist de entrada · 6 fotos</span></div><span class="bd s"><svg class="ic"><use href="#i-circle-check"/></svg>Concluída</span></div>
+            <div class="os"><span class="pl">BRA-2E19</span><div><b>Revisão 40.000 km</b><span>Orçamento enviado à locadora</span></div><span class="bd a"><svg class="ic"><use href="#i-clock"/></svg>Aprovação</span></div>
+            <div class="os"><span class="pl">PJK-7C03</span><div><b>Diagnóstico de suspensão</b><span>Mecânico executando tarefas</span></div><span class="bd i"><svg class="ic"><use href="#i-wrench"/></svg>Em execução</span></div>
+          </div>
+        </div>
+        <div class="flutua f1"><span class="bola"><svg class="ic"><use href="#i-camera"/></svg></span><div><b>Foto carimbada</b><span>Data, hora, GPS e placa</span></div></div>
+        <div class="flutua f2"><span class="bola"><svg class="ic"><use href="#i-shield-check"/></svg></span><div><b>Parecer: Apto</b><span>Inspeção de saída</span></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -449,7 +571,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <span><svg class="ic"><use href="#i-building-2"/></svg>Multiempresa com dados isolados</span>
   <span><svg class="ic"><use href="#i-lock"/></svg>Perfis e permissões por função</span>
   <span><svg class="ic"><use href="#i-wifi-off"/></svg>Offline-first</span>
-  <span><svg class="ic"><use href="#i-chart-column"/></svg>Pronto para Power BI</span>
+  <span><svg class="ic"><use href="#i-radio-tower"/></svg>Rastreador, software e monitoramento</span>
   <span><svg class="ic"><use href="#i-smartphone"/></svg>PWA e app Android</span>
 </div></div>
 
@@ -458,13 +580,28 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Nossos sistemas</span>
       <h2>Dois produtos, uma só linguagem</h2>
-      <p>Cada sistema resolve um problema de frota de ponta a ponta. Mesma marca, mesmo padrão de uso e a possibilidade de contratar só o que você precisa.</p></div>
+      <p>Cada sistema resolve um problema de frota de ponta a ponta. Mesma marca, mesmo padrão de uso e a liberdade de contratar só o que você precisa.</p></div>
 
     <div class="prod">
-      <article class="card esc rv">
-        <img class="logo" src="site/logos/nexum-inspect-escuro.svg" alt="NEXUM Inspect" height="46">
+      <article class="card esc destaque rv">
+        <span class="selo-dest">Em destaque</span>
+        <img class="logo" src="site/logos/nexum-fleet-escuro.svg" alt="NEXUM Fleet" height="46">
+        <h3>Frota, telemetria e passageiros</h3>
+        <p>Da rota cadastrada ao ônibus no mapa, do embarque por crachá à medição do contrato. Um sistema só, vendido em módulos, com serviço completo da NEXUM.</p>
+        <div class="tags"><span class="tag">Transportadoras</span><span class="tag">Mineradoras</span><span class="tag">Transporte coletivo</span></div>
+        <ul class="lista">
+          <li><svg class="ic"><use href="#i-check"/></svg>Rotas com cota por turma e overbooking, e otimização que só vira rota depois que o gestor aprova</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Frota ao vivo, trajeto, paradas, excesso de velocidade e cercas</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Computador de bordo Android com checklist, parte diária e embarque, mesmo sem sinal</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Medição do contrato por rota e dia, pronta para a contratante aprovar</li>
+        </ul>
+        <a class="btn btn-pri" href="#fleet">Conhecer o Fleet por dentro <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+      </article>
+
+      <article class="card cla rv d1">
+        <img class="logo" src="site/logos/nexum-inspect-claro.svg" alt="NEXUM Inspect" height="46">
         <h3>Checklist, OS e manutenção</h3>
-        <p>Oficina e contratante no mesmo registro. Do checklist offline à fatura paga, com prova em foto e tudo medido no tempo.</p>
+        <p>Oficina e contratante no mesmo registro. Do checklist offline à fatura paga, com prova em foto e cada etapa medida no tempo.</p>
         <div class="tags"><span class="tag">Oficinas</span><span class="tag">Locadoras</span><span class="tag">Frotas</span></div>
         <ul class="lista">
           <li><svg class="ic"><use href="#i-check"/></svg>Checklist de entrada, saída e inspeção com parecer Apto, Ressalvas ou Inapto</li>
@@ -472,21 +609,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
           <li><svg class="ic"><use href="#i-check"/></svg>Orçamento aprovado item a item e catálogo padronizado de peças e mão de obra</li>
           <li><svg class="ic"><use href="#i-check"/></svg>Estoque, nota fiscal por XML, fatura mensal e histórico de cada veículo</li>
         </ul>
-        <a class="btn btn-pri" href="#contato" data-prod="NEXUM Inspect">Quero conhecer o Inspect <svg class="ic"><use href="#i-arrow-right"/></svg></a>
-      </article>
-
-      <article class="card cla rv d1">
-        <img class="logo" src="site/logos/nexum-fleet-claro.svg" alt="NEXUM Fleet" height="46">
-        <h3>Frota, telemetria e passageiros</h3>
-        <p>Da rota cadastrada ao ônibus no mapa, do embarque por crachá à medição do contrato. Um sistema só, vendido em módulos.</p>
-        <div class="tags"><span class="tag">Transportadoras</span><span class="tag">Mineradoras</span><span class="tag">Transporte coletivo</span></div>
-        <ul class="lista">
-          <li><svg class="ic"><use href="#i-check"/></svg>Frota ao vivo no mapa, trajeto por dia, paradas, excesso de velocidade e cercas</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Rotas, horários e embarque por crachá, com computador de bordo Android</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Portal do passageiro (PWA) e visão própria para a contratante</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Serviço completo: equipamento, software e monitoramento dos rastreadores</li>
-        </ul>
-        <a class="btn btn-esc" href="#contato" data-prod="NEXUM Fleet">Quero conhecer o Fleet <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-esc" href="#inspect" data-prod="NEXUM Inspect">Conhecer o Inspect <svg class="ic"><use href="#i-arrow-right"/></svg></a>
       </article>
     </div>
 
@@ -497,40 +620,175 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   </div>
 </section>
 
-<!-- O QUE ENTREGAMOS -->
-<section id="entregamos">
+<!-- DORES -->
+<section id="dores">
   <div class="wrap">
-    <div class="cab rv"><span class="eyebrow">O que entregamos</span>
-      <h2>Menos planilha, menos WhatsApp, mais prova</h2>
-      <p>O que o seu time registra no dia a dia vira controle, histórico e decisão, sem retrabalho de digitação.</p></div>
-    <div class="grade">
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist que não se perde</h3><p>Itens OK, Não OK e N/A, item crítico que reprova a inspeção e checklists personalizáveis por empresa, com versões.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-camera"/></svg></div><h3>Provas que não se fraudam</h3><p>Carimbo dentro da foto, detecção de imagem repetida e alerta de retrabalho quando a mesma peça é trocada em pouco tempo.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento e aprovação</h3><p>A contratante aprova ou contesta item a item. Cliente direto aprova por link, sem precisar de login.</p></div>
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-package"/></svg></div><h3>Estoque visual</h3><p>Nível, cobertura em dias, curva ABC e baixa automática ao usar a peça na OS. Catálogo padronizado, sem texto livre.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota fiscal e financeiro</h3><p>Leitura do XML da NF-e, conciliação por OS, fatura mensal automática e controle do que está a pagar, vencido e pago.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Tempo medido de verdade</h3><p>Cada mudança de situação grava data e hora. Veículo parado, prazo de aprovação e SLA ficam visíveis em painéis.</p></div>
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-map-pin"/></svg></div><h3>Frota ao vivo</h3><p>Posição, trajeto, paradas, velocidade e cercas em um mapa, com a Central NEXUM de olho nos rastreadores.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-qr-code"/></svg></div><h3>Embarque por crachá</h3><p>Leitor RFID ou selo digital registra quem embarcou e desembarcou, mesmo sem sinal, e sincroniza depois.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Dados prontos para BI</h3><p>Views preparadas para Power BI e relatórios em PDF para levar o resultado à reunião de contrato.</p></div>
+    <div class="cab c rv"><span class="eyebrow">O problema que resolvemos</span>
+      <h2>O transporte coletivo costuma rodar em planilha, rádio e boa vontade</h2>
+      <p>Até o dia em que um ônibus sai lotado, outro vazio, e ninguém consegue provar quem fez o quê na hora de medir o contrato.</p></div>
+    <div class="vs">
+      <div class="sem rv">
+        <h3><svg class="ic"><use href="#i-triangle-alert"/></svg>Como é hoje, na maioria das operações</h3>
+        <ul>
+          <li><svg class="ic"><use href="#i-x"/></svg>Rotas em planilha que ninguém atualiza e passageiro sem lugar certo</li>
+          <li><svg class="ic"><use href="#i-x"/></svg>Rota lotada de um lado e ônibus rodando vazio do outro</li>
+          <li><svg class="ic"><use href="#i-x"/></svg>Viagem esquecida aberta, checklist no papel, falha de veículo que só aparece tarde</li>
+          <li><svg class="ic"><use href="#i-x"/></svg>Fim do mês com discussão de quilometragem entre transportadora e contratante</li>
+          <li><svg class="ic"><use href="#i-x"/></svg>Oficina sem prova: o que foi trocado, quando e por quem</li>
+        </ul>
+      </div>
+      <div class="com rv d1">
+        <h3><svg class="ic"><use href="#i-circle-check"/></svg>Com a NEXUM</h3>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>Cada passageiro vinculado a uma rota e turma, com cota e overbooking sob controle</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Otimização por base que propõe e o gestor aprova: nada muda sozinho</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Checklist diário no aparelho, alerta na hora e encerramento automático de viagem esquecida</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Grade de km por rota e dia aprovada em fluxo, com histórico e trilha de auditoria</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Foto com carimbo, orçamento aprovado item a item e tempo registrado em cada etapa</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FLUXO -->
+<!-- FLEET -->
+<section id="fleet">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">NEXUM Fleet</span>
+      <h2>Do cadastro da rota à medição do contrato</h2>
+      <p>Três módulos que se complementam. Contrate o conjunto ou só o que a sua operação precisa: o sistema esconde o resto.</p></div>
+
+    <div class="modulos">
+      <div class="mod rv"><div class="ico"><svg class="ic"><use href="#i-users"/></svg></div>
+        <h3>Gestão de passageiros</h3><p>Roteirização, vínculo e acompanhamento de quem usa o transporte.</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>Rotas no mapa, importação de KMZ e pontos de embarque</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Otimização por base, em rascunho, com aprovação</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Cadastro público por link, com análise do gestor</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Portal do passageiro com selo digital</li>
+        </ul></div>
+      <div class="mod rv d1"><div class="ico"><svg class="ic"><use href="#i-truck"/></svg></div>
+        <h3>Frota e operação</h3><p>Computador de bordo, viagens, medição e contratante no mesmo registro.</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>App Android do motorista, com modo offline</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Checklist diário com itens críticos e alerta imediato</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Medição por rota e dia, viagens extras e boletim</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Visão própria para a contratante aprovar</li>
+        </ul></div>
+      <div class="mod rv d2"><div class="ico"><svg class="ic"><use href="#i-radio-tower"/></svg></div>
+        <h3>Rastreamento</h3><p>Posição, trajeto e eventos do veículo, com equipamento e monitoramento NEXUM.</p>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>Mapa online com satélite para áreas remotas</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Cercas retangulares, circulares e em polígono</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Central com 18 relatórios e exportação em Excel</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Comandos remotos ao rastreador, todos auditados</li>
+        </ul></div>
+    </div>
+
+    <div class="grade g4">
+      <div class="rec m rv"><div class="ico"><svg class="ic"><use href="#i-route"/></svg></div><h3>Rotas que se ajustam</h3><p>Rota editável a qualquer momento, com empresa, ponto de SLA, linha de QQP e abrangência já no cadastro. Rotas inativas ficam guardadas e podem ser reativadas.</p></div>
+      <div class="rec m rv d1"><div class="ico"><svg class="ic"><use href="#i-layers"/></svg></div><h3>Cota por turma e overbooking</h3><p>Capacidade por turma de trabalho e um percentual a mais para prever faltas. Sem vaga, o sistema sugere aguardar, otimizar ou criar nova rota.</p></div>
+      <div class="rec m rv d2"><div class="ico"><svg class="ic"><use href="#i-calendar"/></svg></div><h3>Escalas do seu jeito</h3><p>Turmas A a D, 1 a 3 ou manhã, tarde e noite. Cada cliente define regimes, períodos e rodízio, sem depender de desenvolvimento.</p></div>
+      <div class="rec m rv d3"><div class="ico"><svg class="ic"><use href="#i-smartphone"/></svg></div><h3>Computador de bordo</h3><p>Checklist, parte diária, embarque por crachá, NFC ou QR e GPS. Tudo salvo no aparelho e enviado quando o sinal volta, sem duplicar.</p></div>
+
+      <div class="rec m rv"><div class="ico"><svg class="ic"><use href="#i-bell"/></svg></div><h3>Alertas da frota</h3><p>Checklist com item crítico reprovado vira alerta na hora para o programador, que fecha com motivo e fica registrado.</p></div>
+      <div class="rec m rv d1"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Viagem nunca fica esquecida</h3><p>Encerramento forçado pelo gestor e automático por tempo. Reposição de veículo quebrado vinculada à viagem original.</p></div>
+      <div class="rec m rv d2"><div class="ico"><svg class="ic"><use href="#i-file-text"/></svg></div><h3>Medição sem briga</h3><p>Grade de km por rota e dia, aprovação em fluxo, QQP, viagens extras e boletim. Só rotas ativas entram na conta.</p></div>
+      <div class="rec m rv d3"><div class="ico"><svg class="ic"><use href="#i-scan-line"/></svg></div><h3>Análise de embarque</h3><p>Cruza a telemetria de crachás com o cadastro e aponta quem embarcou na rota errada, com histórico e decisão do gestor em reincidência.</p></div>
+
+      <div class="rec m rv"><div class="ico"><svg class="ic"><use href="#i-clock"/></svg></div><h3>SLA e quebras</h3><p>Atraso por rota e transportadora, possíveis quebras detectadas e evidências para a conversa com o contrato.</p></div>
+      <div class="rec m rv d1"><div class="ico"><svg class="ic"><use href="#i-map-pin"/></svg></div><h3>Mapas para áreas remotas</h3><p>Alternância para satélite em todos os mapas, para identificar locais que o mapa comum não mostra.</p></div>
+      <div class="rec m rv d2"><div class="ico"><svg class="ic"><use href="#i-lock"/></svg></div><h3>Acesso sob controle</h3><p>40 permissões, perfis editáveis, escopo por transportadora, base ou contratante, validade de acesso e auditoria que não pode ser apagada.</p></div>
+      <div class="rec m rv d3"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Relatórios e Excel</h3><p>Relatórios de gestão, rastreamento e ocupação, exportados em Excel com a marca e prontos para a reunião de contrato.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OCUPAÇÃO -->
+<section id="ocupacao" style="background:var(--claro)">
+  <div class="wrap split">
+    <div class="rv">
+      <span class="eyebrow">Gestão de passageiros</span>
+      <h2>Lotação certa, nem um assento a menos nem ônibus vazio</h2>
+      <p>Cada rota tem capacidade por turma, com um percentual de overbooking para absorver faltas. Quando não há vaga, o sistema avisa e mostra o caminho em vez de deixar o passageiro sem rota.</p>
+      <ul class="vant">
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>A otimização propõe, o gestor decide</b><span>Sugestões ficam em rascunho, a versão anterior é arquivada e nenhuma rota ativa muda sozinha.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Cadastro sem fila no RH</b><span>O passageiro se cadastra por um link público e o gestor aprova. Funcionário desligado perde o acesso na validade.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Aviso antes de estourar a licença</b><span>O painel alerta ao chegar em 80% do limite de passageiros, rotas e usuários contratados.</span></div></li>
+      </ul>
+    </div>
+    <div class="rv d2" id="painelbar">
+      <div class="painel">
+        <h4>Ocupação por turma na rota TC24 (ilustração)</h4>
+        <div class="barra"><div><span>Turma A</span><span>41 de 46</span></div><i style="--w:89%"></i></div>
+        <div class="barra"><div><span>Turma B</span><span>46 de 46 · cota cheia</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Turma C</span><span>38 de 46</span></div><i style="--w:83%"></i></div>
+        <div class="barra"><div><span>Turma D</span><span>29 de 46</span></div><i style="--w:63%"></i></div>
+        <p class="nota">Com 10% de overbooking, a cota efetiva de cada turma passa de 46 para 50 vínculos, prevendo as ausências do dia a dia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO FLEET -->
 <section id="fluxo">
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Como funciona</span>
-      <h2>O caminho de uma ordem de serviço</h2>
-      <p>Um fluxo claro, em que cada etapa tem responsável, hora registrada e evidência.</p></div>
-    <div class="passos">
+      <h2>Um dia de operação no NEXUM Fleet</h2>
+      <p>Do cadastro à medição, cada etapa tem responsável, hora registrada e evidência.</p></div>
+    <div class="passos seis">
+      <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-route"/></svg></div><h3>Planejar</h3><p>Rotas, pontos, horários e passageiros vinculados à turma.</p></div>
+      <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist</h3><p>Motorista confere o veículo. Item crítico gera alerta na hora.</p></div>
+      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-bus"/></svg></div><h3>Parte diária</h3><p>Viagem aberta com rota, turno, sentido e hodômetro.</p></div>
+      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-qr-code"/></svg></div><h3>Embarque</h3><p>Crachá, NFC ou QR registra quem entrou, mesmo sem sinal.</p></div>
+      <div class="passo rv d4"><div class="n"><svg class="ic"><use href="#i-map-pin"/></svg></div><h3>Acompanhar</h3><p>Mapa ao vivo, cercas, paradas e excesso de velocidade.</p></div>
+      <div class="passo rv d4"><div class="n"><svg class="ic"><use href="#i-file-text"/></svg></div><h3>Medir</h3><p>Km por rota e dia aprovado e fechado no período.</p></div>
+    </div>
+    <div class="regra rv"><svg class="ic"><use href="#i-shield-check"/></svg><p><b>Nada fica sem rastro.</b> Toda alteração é registrada com data, hora e usuário em um log de auditoria que não aceita edição nem exclusão.</p></div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<div class="nums"><div class="wrap">
+  <div class="rv"><b>18</b><span>relatórios de rastreamento</span></div>
+  <div class="rv d1"><b>3</b><span>formatos de cerca virtual</span></div>
+  <div class="rv d2"><b>40</b><span>permissões de acesso configuráveis</span></div>
+  <div class="rv d3"><b>Offline</b><span>o motorista registra mesmo sem sinal</span></div>
+</div></div>
+
+<!-- CTA MEIO -->
+<div class="meio"><div class="wrap">
+  <div><h2>Veja o NEXUM Fleet funcionando com a sua operação</h2><p>Mostramos rota, bordo, mapa e medição com um cenário parecido com o seu. Sem compromisso.</p></div>
+  <a class="btn btn-pri" href="#contato" data-prod="NEXUM Fleet">Agendar apresentação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+</div></div>
+
+<!-- INSPECT -->
+<section id="inspect">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">NEXUM Inspect</span>
+      <h2>Oficina e contratante no mesmo registro</h2>
+      <p>Menos planilha, menos WhatsApp, mais prova. O que o time registra vira controle, histórico e decisão, sem retrabalho de digitação.</p></div>
+    <div class="grade">
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist que não se perde</h3><p>Itens OK, Não OK e N/A, item crítico que reprova a inspeção e modelos personalizáveis por empresa, com versões.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-camera"/></svg></div><h3>Provas que não se fraudam</h3><p>Carimbo dentro da foto, detecção de imagem repetida e alerta de retrabalho quando a mesma peça volta em pouco tempo.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento e aprovação</h3><p>A contratante aprova ou contesta item a item. Cliente direto aprova por link, sem precisar de login.</p></div>
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-package"/></svg></div><h3>Estoque visual</h3><p>Nível, cobertura em dias, curva ABC e baixa automática ao usar a peça na OS, com catálogo padronizado.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota fiscal e financeiro</h3><p>Leitura do XML da NF-e, conciliação por OS, fatura mensal automática e controle de a pagar, vencido e pago.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Tempo medido de verdade</h3><p>Cada mudança de situação grava data e hora. Veículo parado, prazo de aprovação e SLA ficam visíveis em painéis.</p></div>
+      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-history"/></svg></div><h3>Histórico do veículo</h3><p>Tudo o que passou por cada placa, com fotos, peças, valores e responsáveis, a um clique.</p></div>
+      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-building-2"/></svg></div><h3>Portais por perfil</h3><p>Visões próprias para oficinas, locadoras e frotas, cada uma vendo apenas o que lhe pertence.</p></div>
+      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Pronto para Power BI</h3><p>Views preparadas para BI e relatórios em PDF para levar o resultado à reunião de contrato.</p></div>
+    </div>
+
+    <div class="subtit rv"><h3>O caminho de uma ordem de serviço</h3><p>Nada é executado sem aprovação, e a contratante enxerga tudo no mesmo registro da oficina.</p></div>
+    <div class="passos lt">
       <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-calendar"/></svg></div><h3>Agendar</h3><p>Veículo entra na parada e a OS é aberta para a oficina.</p></div>
       <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist de entrada</h3><p>Estado do veículo registrado com foto, offline se for preciso.</p></div>
-      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento aprovado</h3><p>Nada é executado sem aprovação. Só o aprovado vira tarefa.</p></div>
-      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-wrench"/></svg></div><h3>Execução e saída</h3><p>Mecânico executa com foto por tarefa e checklist de saída.</p></div>
+      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento aprovado</h3><p>Só o aprovado vira tarefa.</p></div>
+      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-wrench"/></svg></div><h3>Execução e saída</h3><p>Foto por tarefa e checklist de saída.</p></div>
       <div class="passo rv d4"><div class="n"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota e fatura</h3><p>NF-e conciliada, fatura do mês e pagamento registrado.</p></div>
     </div>
-    <div class="regra rv"><svg class="ic"><use href="#i-shield-check"/></svg><p><b>Nada é executado sem aprovação.</b> A execução só começa com o orçamento aprovado, e a contratante enxerga tudo no mesmo registro da oficina.</p></div>
+    <div style="text-align:center;margin-top:44px" class="rv"><a class="btn btn-esc" href="#contato" data-prod="NEXUM Inspect">Quero ver o Inspect em ação <svg class="ic"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
@@ -540,10 +798,10 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
     <div class="cab c rv"><span class="eyebrow">Para quem</span>
       <h2>Feito para quem vive de veículo rodando</h2></div>
     <div class="quem">
-      <div class="pq rv"><svg class="ic"><use href="#i-wrench"/></svg><h3>Oficinas</h3><p>Controle OS, peças, estoque, notas e o histórico de cada cliente em um lugar só.</p></div>
-      <div class="pq rv d1"><svg class="ic"><use href="#i-truck"/></svg><h3>Locadoras e frotas</h3><p>Acompanhe cada parada, aprove orçamentos e saiba quanto tempo o veículo ficou sem rodar.</p></div>
-      <div class="pq rv d2"><svg class="ic"><use href="#i-route"/></svg><h3>Transportadoras</h3><p>Rotas, motoristas, rastreamento e medição do contrato com a contratante.</p></div>
-      <div class="pq rv d3"><svg class="ic"><use href="#i-factory"/></svg><h3>Mineradoras e contratantes</h3><p>Visão própria para auditar, aprovar e medir serviços prestados por terceiros.</p></div>
+      <div class="pq rv"><svg class="ic"><use href="#i-route"/></svg><h3>Transportadoras</h3><p>Rotas, motoristas, rastreamento e medição do contrato com a contratante, em um só lugar.</p></div>
+      <div class="pq rv d1"><svg class="ic"><use href="#i-factory"/></svg><h3>Mineradoras e contratantes</h3><p>Visão própria para acompanhar a operação, auditar e aprovar a medição de serviços de terceiros.</p></div>
+      <div class="pq rv d2"><svg class="ic"><use href="#i-wrench"/></svg><h3>Oficinas</h3><p>Controle OS, peças, estoque, notas e o histórico de cada cliente.</p></div>
+      <div class="pq rv d3"><svg class="ic"><use href="#i-truck"/></svg><h3>Locadoras e frotas</h3><p>Acompanhe cada parada, aprove orçamentos e saiba quanto tempo o veículo ficou sem rodar.</p></div>
     </div>
   </div>
 </section>
@@ -554,22 +812,24 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
     <div class="rv">
       <span class="eyebrow">Por que NEXUM</span>
       <h2>Pensado para o campo, não só para o escritório</h2>
-      <p>Pátio de oficina, estrada e mina têm sinal ruim. Por isso os nossos sistemas foram desenhados para continuar funcionando e sincronizar depois.</p>
+      <p>Pátio de oficina, estrada e mina têm sinal ruim. Por isso os nossos sistemas continuam funcionando e sincronizam depois.</p>
       <ul class="vant">
-        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Offline de verdade</b><span>Checklist e embarques ficam no aparelho e sincronizam sozinhos, sem duplicar nem perder dados.</span></div></li>
+        <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Offline de verdade</b><span>Checklist, viagem e embarques ficam no aparelho e sincronizam sozinhos, sem duplicar nem perder dados.</span></div></li>
         <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Cada cliente isolado</b><span>Multiempresa com perfis de acesso: ninguém vê o que não é seu.</span></div></li>
         <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Serviço completo</b><span>No Fleet, a NEXUM entrega equipamento, software e acompanhamento da operação.</span></div></li>
         <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Visual profissional e acessível</b><span>Design System próprio, com contraste, foco visível e botões grandes para uso com luva e sol forte.</span></div></li>
       </ul>
     </div>
-    <div class="rv d2" id="painelbar">
+    <div class="rv d2">
       <div class="painel">
-        <h4>O que o sistema acompanha na parada</h4>
-        <div class="barra"><div><span>Checklists com evidência</span><span>Foto com carimbo</span></div><i style="--w:100%"></i></div>
-        <div class="barra"><div><span>Orçamento aprovado antes da execução</span><span>Regra obrigatória</span></div><i style="--w:100%"></i></div>
-        <div class="barra"><div><span>Peças e serviços do catálogo</span><span>Sem texto livre</span></div><i style="--w:100%"></i></div>
-        <div class="barra"><div><span>Tempo registrado automaticamente</span><span>Sem digitação</span></div><i style="--w:100%"></i></div>
-        <p class="nota">Ilustração do comportamento do sistema: regras que o NEXUM Inspect aplica em toda ordem de serviço.</p>
+        <h4 class="sub-t">Regras que o sistema aplica por você</h4>
+        <div class="barra"><div><span>Rota ativa nunca muda sozinha</span><span>Fleet</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Checklist inapto vira alerta na hora</span><span>Fleet</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Auditoria que não aceita edição</span><span>Fleet</span></div><i style="--w:100%"></i></div>
+        <h4 class="sub-t">Na oficina</h4>
+        <div class="barra"><div><span>Orçamento aprovado antes da execução</span><span>Inspect</span></div><i style="--w:100%"></i></div>
+        <div class="barra"><div><span>Foto com carimbo de hora, GPS e placa</span><span>Inspect</span></div><i style="--w:100%"></i></div>
+        <p class="nota">Ilustração do comportamento dos sistemas: regras aplicadas em toda operação.</p>
       </div>
       <div class="paleta" role="img" aria-label="Paleta da marca NEXUM">
         <i style="background:#142B45">Marinho</i><i style="background:#203056">Profundo</i><i style="background:#147D92">Petróleo</i><i style="background:#35B7A4">Turquesa</i><i style="background:#F3F8F8">Claro</i>
@@ -583,10 +843,14 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
     <div class="faq rv">
-      <details><summary>O sistema funciona sem internet?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. No Inspect, o checklist e o registro de tarefas ficam salvos no aparelho e sincronizam quando o sinal volta, sem duplicar nada. No Fleet, o computador de bordo registra embarques e posição e envia depois.</p></details>
+      <details><summary>O sistema funciona sem internet?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. No Fleet, o computador de bordo registra checklist, viagem, embarques e posição no aparelho e envia tudo quando o sinal volta, sem duplicar. No Inspect, o checklist e o registro de tarefas também ficam salvos no aparelho.</p></details>
+      <details><summary>A otimização muda as minhas rotas sozinha?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Nunca. A otimização gera propostas em rascunho, o gestor revisa e aprova, e a versão anterior da rota fica arquivada. Rota ativa só muda com a sua decisão.</p></details>
+      <details><summary>Como o Fleet lida com turnos e escalas diferentes?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Cada cliente configura os próprios regimes: turmas por letra (A a D) ou número (1 a 3), períodos como manhã, tarde e noite, e o rodízio entre turmas. A capacidade das rotas é controlada por turma.</p></details>
+      <details><summary>Preciso usar o rastreador de vocês?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>O Fleet vem com o serviço completo: equipamento, software e monitoramento. Se você já tem rastreadores, conversamos sobre a integração no projeto. Conte o seu cenário no formulário.</p></details>
+      <details><summary>A contratante consegue acompanhar e aprovar a medição?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. A contratante tem uma visão própria, limitada às suas rotas, para acompanhar a operação e aprovar a quilometragem e as viagens extras. A transportadora corrige o que for reprovado e devolve ao gestor.</p></details>
       <details><summary>Preciso contratar tudo junto?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Não. Os sistemas são independentes e, dentro do Fleet, os módulos são vendidos separadamente: o cliente contrata o que precisa e o sistema esconde o resto.</p></details>
-      <details><summary>Funciona no celular?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. Os dois sistemas abrem no navegador e instalam como aplicativo (PWA). Também há versões Android para o dia a dia de campo.</p></details>
-      <details><summary>Meus dados ficam misturados com os de outras empresas?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Não. Cada empresa enxerga apenas os próprios dados, com perfis de acesso por função (como inspetor, mecânico, gestor e administrador).</p></details>
+      <details><summary>Meus dados ficam misturados com os de outras empresas?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Não. Cada empresa enxerga apenas os próprios dados, com perfis de acesso por função e escopo por transportadora, base ou contratante.</p></details>
+      <details><summary>Funciona no celular?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. Os sistemas abrem no navegador e instalam como aplicativo (PWA). Também há versões Android para o dia a dia de campo, como o computador de bordo do Fleet.</p></details>
       <details><summary>Dá para levar os dados para o Power BI?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Sim. O Inspect já traz views preparadas para Power BI, e também fazemos dashboards e integrações sob medida.</p></details>
       <details><summary>Como começo?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Envie uma mensagem pelo formulário abaixo contando o seu cenário. Retornamos para marcar uma apresentação do sistema que mais faz sentido para você.</p></details>
     </div>
@@ -617,11 +881,17 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
         <label>E-mail<input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com.br"></label>
         <label>Telefone / WhatsApp<input name="tel" type="tel" autocomplete="tel" placeholder="(00) 00000-0000"></label>
       </div>
-      <label>Tenho interesse em
-        <select name="produto" id="produto">
-          <option>NEXUM Inspect</option><option>NEXUM Fleet</option><option>Os dois sistemas</option><option>Projeto sob medida</option><option>Outro assunto</option>
-        </select></label>
-      <label>Conte um pouco do seu cenário<textarea name="msg" placeholder="Quantos veículos, que tipo de operação, o que hoje dá mais trabalho…"></textarea></label>
+      <div class="dois">
+        <label>Tenho interesse em
+          <select name="produto" id="produto">
+            <option>NEXUM Fleet</option><option>NEXUM Inspect</option><option>Os dois sistemas</option><option>Projeto sob medida</option><option>Outro assunto</option>
+          </select></label>
+        <label>Tamanho da frota
+          <select name="frota">
+            <option>Prefiro informar depois</option><option>Até 10 veículos</option><option>11 a 50 veículos</option><option>51 a 200 veículos</option><option>Mais de 200 veículos</option>
+          </select></label>
+      </div>
+      <label>Conte um pouco do seu cenário<textarea name="msg" placeholder="Que tipo de operação, quantas rotas e passageiros, o que hoje dá mais trabalho…"></textarea></label>
       <button class="btn btn-pri" type="submit">Enviar mensagem <svg class="ic"><use href="#i-send"/></svg></button>
       <p class="ok-msg" id="ok" role="status"></p>
       <p class="peq">Ao enviar, abrimos o seu aplicativo de e-mail com a mensagem pronta. Usamos seus dados apenas para responder ao contato.</p>
@@ -633,9 +903,9 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <footer>
   <div class="wrap">
     <div class="rod">
-      <div><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="40"><p>Sistemas de gestão para oficinas, frotas e transporte. Simples de usar, rigorosos nos registros.</p></div>
-      <div><h4>Produtos</h4><ul><li><a href="#produtos">NEXUM Inspect</a></li><li><a href="#produtos">NEXUM Fleet</a></li><li><a href="#contato">Projeto sob medida</a></li></ul></div>
-      <div><h4>Empresa</h4><ul><li><a href="#entregamos">O que entregamos</a></li><li><a href="#fluxo">Como funciona</a></li><li><a href="#paraquem">Para quem</a></li></ul></div>
+      <div><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="40"><p>Sistemas de gestão para transporte coletivo, frotas e oficinas. Simples de usar, rigorosos nos registros.</p></div>
+      <div><h4>Produtos</h4><ul><li><a href="#fleet">NEXUM Fleet</a></li><li><a href="#inspect">NEXUM Inspect</a></li><li><a href="#contato">Projeto sob medida</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="#dores">O problema que resolvemos</a></li><li><a href="#fluxo">Como funciona</a></li><li><a href="#paraquem">Para quem</a></li></ul></div>
       <div><h4>Ajuda</h4><ul><li><a href="#faq">Perguntas frequentes</a></li><li><a href="#contato">Contato</a></li></ul></div>
     </div>
     <div class="rod-fim"><span>© <span id="ano">2026</span> NEXUM Systems. Todos os direitos reservados.</span><span>Feito com o NEXUM Design System</span></div>
@@ -645,7 +915,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <script>
 /* ===== CONFIGURE AQUI SEUS CANAIS DE CONTATO ===== */
 var CONTATO_EMAIL = "contato@nexumsystems.com.br";
-var CONTATO_WHATSAPP = "";  /* somente números com DDI e DDD, ex.: 5594999999999 */
+var CONTATO_WHATSAPP = "5594992907735";  /* somente números com DDI e DDD, ex.: 5594999999999 */
 /* ================================================= */
 
 (function(){
@@ -660,6 +930,14 @@ var CONTATO_WHATSAPP = "";  /* somente números com DDI e DDD, ex.: 559499999999
     els.forEach(function(el){io.observe(el)});
   } else els.forEach(function(el){el.classList.add('vis')});
 
+
+  /* abas do hero */
+  var tabs=[].slice.call(document.querySelectorAll('.abas [role=tab]'));
+  function abre(t){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on})}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){abre(t)});
+    t.addEventListener('keydown',function(e){var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(k){var n=tabs[(i+k+tabs.length)%tabs.length];n.focus();abre(n)}});
+  });
   document.getElementById('ano').textContent=new Date().getFullYear();
   var te=document.getElementById('tEmail'),ce=document.getElementById('cEmail'),cz=document.getElementById('cZap');
   te.textContent=CONTATO_EMAIL; ce.href='mailto:'+CONTATO_EMAIL;
@@ -678,7 +956,7 @@ var CONTATO_WHATSAPP = "";  /* somente números com DDI e DDD, ex.: 559499999999
       ok.className='ok-msg on';ok.style.cssText='background:#FDECEC;border-color:#F2B8B8;color:#B02E2E';
       ok.textContent='Informe seu nome e um e-mail válido para continuarmos.';return}
     ok.style.cssText='';
-    var corpo='Nome: '+d.get('nome')+'\nEmpresa: '+d.get('empresa')+'\nE-mail: '+d.get('email')+'\nTelefone: '+d.get('tel')+'\nInteresse: '+d.get('produto')+'\n\n'+d.get('msg');
+    var corpo='Nome: '+d.get('nome')+'\nEmpresa: '+d.get('empresa')+'\nE-mail: '+d.get('email')+'\nTelefone: '+d.get('tel')+'\nInteresse: '+d.get('produto')+'\nFrota: '+d.get('frota')+'\n\n'+d.get('msg');
     location.href='mailto:'+CONTATO_EMAIL+'?subject='+encodeURIComponent('Contato pelo site: '+d.get('produto'))+'&body='+encodeURIComponent(corpo);
     ok.className='ok-msg on';ok.textContent='Pronto! Abrimos o seu aplicativo de e-mail com a mensagem preparada. É só enviar.';
   });

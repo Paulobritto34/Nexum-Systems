@@ -1,52 +1,95 @@
 <div align="center">
 
-<img src="site/logos/nexum-fleet-escuro.svg" alt="NEXUM Systems" height="72">
+<img src="site/logos/nexum-systems-claro.svg" alt="NEXUM Systems" height="72">
 
-### Sistemas de gestão para oficinas, frotas e transporte
-**Checklist com prova em foto, ordens de serviço, estoque, financeiro, rastreamento e passageiros.** Tudo no mesmo registro, funcionando até sem sinal.
+### Sistemas de gestão para transporte coletivo, frotas e oficinas
+**Rotas, passageiros, rastreamento, checklist com prova em foto, ordens de serviço e medição de contrato.** Tudo no mesmo registro, funcionando até sem sinal.
 
 </div>
 
 ---
 
-## Visão geral
+## Sobre este repositório
 
-Este é o repositório raiz da **NEXUM Systems**. Ele reúne os produtos, o Design System que padroniza todos eles e a página comercial da empresa.
+Este é o site institucional e comercial da **NEXUM Systems**. Ele apresenta os produtos da empresa, mostra como funcionam e reúne os canais para pedir uma apresentação.
 
-| Pasta / arquivo | O que é |
-|---|---|
-| [`index.html`](index.html) | Página comercial da NEXUM Systems (produtos, entregas, como funciona, FAQ e contato) |
-| [`site/`](site) | Logos, símbolo e fontes usados pela página comercial |
-| [`Nexum Inspect/`](Nexum%20Inspect) | Sistema de checklist, ordens de serviço e manutenção |
-| [`Nexum Fleet/`](Nexum%20Fleet) | Sistema de frota, telemetria e gestão de passageiros |
-| [`Nexum Design System/`](Nexum%20Design%20System) | Marca, cores, tipografia, componentes, ícones e regras de conteúdo |
+A página é estática: um único `index.html` (HTML, CSS e JavaScript), sem build e sem dependências externas. Fontes, logotipos e ícones ficam na pasta `site/`, então nada é carregado de terceiros.
 
-## Produtos
-
-### NEXUM Inspect
-Checklist de inspeção, ordens de serviço e manutenção de frota. Oficina e contratante trabalham no mesmo registro, do checklist offline à fatura paga.
-
-- Checklist de entrada, saída e inspeção, com parecer Apto, Ressalvas ou Inapto
-- Foto com carimbo de hora, data, GPS e placa, com detecção de foto repetida
-- Orçamento aprovado item a item e catálogo padronizado de peças e mão de obra
-- Estoque visual, leitura de NF-e por XML, fatura mensal e histórico de cada veículo
-- Portais para oficinas, locadoras e frotas, com views prontas para Power BI
-
-Documentação completa em [`Nexum Inspect/README.md`](Nexum%20Inspect/README.md).
+## Os produtos
 
 ### NEXUM Fleet
 Frota, telemetria e gestão de passageiros do transporte coletivo, vendido em módulos.
 
-- Frota ao vivo, trajeto por dia, paradas, excesso de velocidade e cercas
-- Rotas, horários, embarque por crachá e computador de bordo Android
-- Portal do passageiro (PWA) e visão própria para a contratante
-- Multi-cliente, com cada empresa enxergando apenas os próprios dados
+- **Gestão de passageiros:** rotas no mapa, pontos de embarque, otimização por base com aprovação do gestor, cota por turma com overbooking, cadastro público e portal do passageiro.
+- **Frota e operação:** computador de bordo Android com checklist, parte diária e embarque por crachá, funcionando offline; medição do contrato por rota e dia; visão própria para a contratante.
+- **Rastreamento:** mapa online com satélite, trajeto, paradas, excesso de velocidade, cercas e central de relatórios com exportação em Excel.
 
-Documentação completa em [`Nexum Fleet/transporte-sistema/README.md`](Nexum%20Fleet/transporte-sistema/README.md).
+### NEXUM Inspect
+Checklist de inspeção, ordens de serviço e manutenção de frota, com oficina e contratante no mesmo registro.
 
-## Design System
+- Checklist de entrada, saída e inspeção, com parecer Apto, Ressalvas ou Inapto
+- Foto com carimbo de hora, GPS e placa, com alerta de foto repetida
+- Orçamento aprovado item a item e catálogo padronizado de peças e mão de obra
+- Estoque, nota fiscal por XML, fatura mensal e histórico de cada veículo
 
-Todos os sistemas seguem o **NEXUM Design System** (`v1.0.0`): cores, tipografia (Manrope e Inter), ícones Lucide, componentes `nx-*` e regras de acessibilidade. Abra [`Nexum Design System/index.html`](Nexum%20Design%20System/index.html) para ver a vitrine e leia o [README do Design System](Nexum%20Design%20System/README.md).
+### Projetos sob medida
+Dashboards em Power BI, integrações com rastreadores e automações para o setor do cliente.
+
+## Estrutura
+
+| Caminho | O que é |
+|---|---|
+| [`index.html`](index.html) | A página inteira: estilos, conteúdo e scripts |
+| [`site/logos/`](site/logos) | Logotipos NEXUM Systems, Fleet e Inspect, em versão clara e escura |
+| [`site/fontes/`](site/fontes) | Manrope e Inter, hospedadas localmente |
+| [`site/nexum-icone.svg`](site/nexum-icone.svg) e [`site/nexum-simbolo.svg`](site/nexum-simbolo.svg) | Ícone da aba e símbolo da marca |
+| [`NEXUM_GitHub.bat`](NEXUM_GitHub.bat) | Atalho para Windows que envia as alterações ao GitHub |
+
+## Ver a página no computador
+
+Abra o `index.html` direto no navegador. Para testar como um servidor, qualquer servidor estático serve, por exemplo:
+
+```bash
+python -m http.server 8080
+```
+
+e acesse `http://localhost:8080`.
+
+## Configurar os canais de contato
+
+No fim do `index.html`, no bloco `<script>`, ficam as duas variáveis de contato:
+
+```js
+var CONTATO_EMAIL = "contato@nexumsystems.com.br";  // e-mail que recebe os pedidos
+var CONTATO_WHATSAPP = "5594999999999";             // somente números, com DDI e DDD (vazio oculta o botão)
+```
+
+O formulário abre o aplicativo de e-mail do visitante com a mensagem pronta (assunto, nome, empresa, telefone, interesse, tamanho da frota e cenário). Para receber os contatos direto no site, é preciso ligar o formulário a um serviço de formulários ou a um backend.
+
+> Este repositório é público. Não coloque aqui senhas, chaves de API, dados de clientes nem documentos internos.
+
+## Publicar
+
+A página funciona em qualquer hospedagem estática. Para publicar pelo **GitHub Pages**:
+
+1. Envie o conteúdo deste repositório para a branch `main` (o `NEXUM_GitHub.bat` faz isso).
+2. No GitHub, abra **Settings, Pages**.
+3. Em **Build and deployment**, escolha **Deploy from a branch**, branch `main`, pasta `/ (root)`.
+4. Aguarde alguns minutos: o endereço aparece no topo da página de configuração.
+
+Para usar um domínio próprio, preencha o campo **Custom domain** na mesma tela e aponte o DNS conforme a orientação do GitHub.
+
+Em outra hospedagem, suba o `index.html` e a pasta `site/` juntos.
+
+## Atualizar a página
+
+1. Edite o `index.html`.
+2. Confira no navegador, em tela larga e no celular.
+3. Rode o `NEXUM_GitHub.bat` e escolha **1** para enviar. Se o GitHub Pages estiver ativo, a versão nova entra no ar sozinha.
+
+## Design
+
+A página segue o **NEXUM Design System**: tipografia Manrope e Inter, ícones em SVG (sem emojis), contraste adequado, foco visível e botões grandes. Os estados são comunicados por cor, ícone e texto, nunca só por cor, e as animações respeitam a preferência de movimento reduzido do sistema.
 
 | Cor | Hex | Uso |
 |---|---|---|
@@ -56,35 +99,15 @@ Todos os sistemas seguem o **NEXUM Design System** (`v1.0.0`): cores, tipografia
 | Azul-profundo | `#203056` | Apoio |
 | Cinza-claro | `#F3F8F8` | Fundos |
 
-## Página comercial
-
-A página `index.html` é estática: HTML, CSS e JavaScript em um único arquivo, sem build e sem dependências externas. Basta abrir no navegador.
-
-**Antes de publicar, configure os canais de contato.** No fim do `index.html`, no bloco `<script>`, edite:
-
-```js
-var CONTATO_EMAIL = "contato@nexumsystems.com.br";  // troque pelo e-mail real
-var CONTATO_WHATSAPP = "";                          // ex.: 5594999999999 (vazio oculta o botão)
-```
-
-O formulário abre o aplicativo de e-mail do visitante com a mensagem pronta. Para receber os contatos direto no site, é preciso ligá-lo a um backend ou a um serviço de formulário.
-
-Para publicar, suba `index.html` e a pasta `site/` juntas em qualquer hospedagem estática.
-
-## Tecnologias
-
-| | Inspect | Fleet |
-|---|---|---|
-| Backend | Node 22, TypeScript, Fastify, PostgreSQL 16 | Node 22, TypeScript, Fastify, PostgreSQL 16 |
-| Web | React 19, Vite, PWA offline-first | React, PWA |
-| Mobile | Android via Capacitor 8 | Android via Capacitor 8 (computador de bordo) |
-| Deploy | Docker e GitHub Actions | Docker e GitHub Actions |
-
-## Convenções do projeto
+## Convenções
 
 - Mensagens de commit em português, no formato `tipo: descrição` (por exemplo, `feat:`, `fix:`, `docs:`)
-- Interface sem emojis: ícones sempre em SVG (Lucide), conforme o Design System
-- Estados da interface comunicados por cor, ícone e palavra, nunca só por cor
+- Interface sem emojis: ícones sempre em SVG
+- Acessibilidade: contraste, foco visível, rótulos nos campos e navegação por teclado
+
+## Direitos
+
+© NEXUM Systems. Todos os direitos reservados. O nome, os logotipos e o conteúdo desta página são da NEXUM Systems e não podem ser reutilizados sem autorização.
 
 ---
 
