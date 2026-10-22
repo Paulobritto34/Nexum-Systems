@@ -324,12 +324,117 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 .passos.lt .passo .n{background:#fff;box-shadow:0 0 0 8px var(--claro),0 8px 20px rgba(20,125,146,.2);color:var(--petroleo);border-color:var(--petroleo)}
 .passos.lt .passo p{color:var(--texto)}
 .subtit{margin:72px 0 36px;text-align:center}.subtit h3{font-size:clamp(22px,2.6vw,30px);font-weight:800}.subtit p{color:var(--texto);margin-top:8px}
-#inspect{background:var(--claro)}
+
 #fluxo .passos.seis{grid-template-columns:repeat(6,1fr)}
 .painel .duas{display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;position:relative}
 .painel .sub-t{font:800 11.5px Manrope;letter-spacing:.14em;text-transform:uppercase;color:var(--turquesa);margin:0 0 14px;position:relative}
 .painel .sub-t:not(:first-of-type){margin-top:26px}
 
+/* TOUR DO PRODUTO */
+#tour{background:var(--claro)}
+.tour-abas{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 22px}
+.tour-abas button{font:700 14px Manrope,sans-serif;padding:10px 16px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--marinho);cursor:pointer;transition:.2s}
+.tour-abas button:hover{border-color:var(--petroleo)}
+.tour-abas button[aria-selected=true]{background:var(--marinho);color:#fff;border-color:var(--marinho)}
+.tour-grid{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+.tour-txt h3{font:800 22px Manrope,sans-serif;color:var(--marinho);margin:0 0 10px}
+.tour-txt p{margin:0 0 14px;color:var(--texto)}
+.tour-txt ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.tour-txt li{display:flex;gap:10px;align-items:flex-start;color:var(--marinho);font-weight:600;font-size:15px}
+.tour-txt li .ic{flex:none;width:18px;height:18px;color:var(--turquesa);margin-top:2px}
+.moldura{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--linha);box-shadow:var(--sombra-forte)}
+.mbarra{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#EEF3F7;border-bottom:1px solid var(--linha)}
+.mbarra i{width:10px;height:10px;border-radius:50%;background:#cbd5df;display:block}
+.mbarra span{margin-left:10px;font:600 12px Inter,sans-serif;color:#6b7c8d;background:#fff;border:1px solid var(--linha);border-radius:6px;padding:3px 12px}
+.moldura img{display:block;width:100%;height:auto}
+.tour-nota{text-align:center;margin:18px 0 0;font-size:13px;color:var(--texto)}
+#comecar .passos{grid-template-columns:repeat(4,1fr)}
+@media (max-width:1020px){.tour-grid{grid-template-columns:1fr}#comecar .passos{grid-template-columns:1fr 1fr}#comecar .passos::before{display:none}}
+@media (max-width:560px){#comecar .passos{grid-template-columns:1fr}}
+/* PROJETOS SOB MEDIDA */
+#projetos{background:linear-gradient(160deg,var(--marinho-900),var(--marinho) 60%,#17405a);color:#fff}
+#projetos .cab h2{color:#fff}#projetos .cab p{color:rgba(255,255,255,.75)}#projetos .eyebrow{color:var(--turquesa)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.proj{padding:26px;border-radius:var(--raio-lg);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:.25s}
+.proj:hover{background:rgba(255,255,255,.1);transform:translateY(-3px)}
+.proj .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(53,183,164,.16);color:var(--turquesa-300);margin-bottom:14px}
+.proj .ico .ic{width:24px;height:24px}
+.proj h3{font:800 18px Manrope,sans-serif;margin:0 0 8px;color:#fff}
+.proj p{margin:0;color:rgba(255,255,255,.74);font-size:15px}
+.proj-etapas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.proj-etapas div{padding:18px 20px;border-left:3px solid var(--turquesa);background:rgba(255,255,255,.05);border-radius:0 12px 12px 0}
+.proj-etapas b{display:block;font:800 13px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--turquesa-300);margin-bottom:6px}
+.proj-etapas span{font-size:14.5px;color:rgba(255,255,255,.8)}
+.proj-cta{margin-top:36px;display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
+.proj-cta p{margin:0;color:rgba(255,255,255,.85);font-weight:600}
+@media (max-width:1020px){.proj-grid{grid-template-columns:1fr 1fr}.proj-etapas{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.proj-grid,.proj-etapas{grid-template-columns:1fr}}
+/* INSPECT v2 */
+#inspect{background:radial-gradient(900px 500px at 85% 8%,rgba(53,183,164,.16),transparent 60%),linear-gradient(180deg,var(--marinho-900),#0E2238);color:#fff}
+.ins-topo{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:56px;align-items:center}
+.ins-txt .eyebrow{color:var(--turquesa)}
+.ins-txt h2{color:#fff;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px}
+.ins-txt>p{color:rgba(255,255,255,.76);font-size:17px;max-width:46ch;margin:0 0 28px}
+.ins-pontos{list-style:none;margin:0 0 32px;padding:0;display:grid;gap:16px}
+.ins-pontos li{display:flex;gap:14px;align-items:flex-start}
+.ins-pontos .b{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(53,183,164,.16);color:var(--turquesa-300)}
+.ins-pontos .b .ic{width:20px;height:20px}
+.ins-pontos b{display:block;font:800 16px Manrope,sans-serif;color:#fff}
+.ins-pontos span{font-size:14.5px;color:rgba(255,255,255,.7)}
+/* a ordem de serviço */
+.osv{background:#fff;color:var(--marinho);border-radius:18px;box-shadow:0 40px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);overflow:hidden;transform:rotate(.6deg)}
+.os-cab{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;background:var(--claro);border-bottom:1px solid var(--linha)}
+.os-cab b{font:800 17px Manrope,sans-serif}
+.os-cab small{display:block;font-size:12.5px;color:var(--texto)}
+.os-chip{font:800 12px Manrope,sans-serif;padding:6px 12px;border-radius:999px;background:#FFF1D6;color:#8A5A00;white-space:nowrap}
+.os-chip.ok{background:#D8F4EE;color:#0B6B5C}
+.os-etapas{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);margin:0;padding:18px 22px 6px;gap:0}
+.os-etapas li{position:relative;text-align:center;font-size:11.5px;font-weight:700;color:#8396a8;padding-top:22px}
+.os-etapas li::before{content:"";position:absolute;top:4px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#fff;border:2px solid #c3d1dd;z-index:1}
+.os-etapas li::after{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:#c3d1dd}
+.os-etapas li:first-child::after{display:none}
+.os-etapas li.f{color:var(--marinho)}.os-etapas li.f::before{background:var(--turquesa);border-color:var(--turquesa)}.os-etapas li.f::after{background:var(--turquesa)}
+.os-etapas li.a{color:var(--marinho)}.os-etapas li.a::before{background:#F2A33A;border-color:#F2A33A;box-shadow:0 0 0 5px rgba(242,163,58,.28)}.os-etapas li.a::after{background:var(--turquesa)}
+.os-corpo{display:grid;grid-template-columns:1.5fr 1fr;gap:0}
+.os-orc{padding:14px 22px 18px}
+.os-orc h4,.os-lado h4{font:800 11.5px Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--texto);margin:0 0 8px}
+.os-item{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 0;border-bottom:1px solid var(--linha);align-items:center}
+.os-item span{font-weight:700;font-size:14px}
+.os-item em{font-style:normal;font-weight:800;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.os-item .ac{grid-column:1/-1;display:flex;gap:6px;margin-top:5px}
+.os-item button{font:700 12px Inter,sans-serif;padding:5px 11px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--texto);cursor:pointer}
+.os-item button:hover{border-color:var(--petroleo)}
+.os-item button:focus-visible{outline:3px solid #F2A33A;outline-offset:2px}
+.os-item button[aria-pressed=true].ap{background:#D8F4EE;border-color:var(--turquesa);color:#0B6B5C}
+.os-item button[aria-pressed=true].ct{background:#FDE3E1;border-color:#E58B84;color:#9B2C22}
+.os-item.cont span,.os-item.cont em{text-decoration:line-through;opacity:.55}
+.os-tot{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px}
+.os-tot span{font-size:13px;color:var(--texto)}
+.os-tot b{font:800 22px Manrope,sans-serif;font-variant-numeric:tabular-nums}
+.os-tot small{display:block;font-size:12px;color:#9B2C22;text-align:right;min-height:16px}
+.os-lado{padding:14px 22px 18px 6px;display:grid;gap:12px;align-content:start}
+.os-foto{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#1c2b3a,#3a4a5a 55%,#26343f)}
+.os-foto svg{position:absolute;inset:0;width:100%;height:100%}
+.os-foto i{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;background:rgba(0,0,0,.62);color:#fff;font:600 10px/1.3 Inter,sans-serif;font-style:normal}
+.os-par{border:1px solid var(--linha);border-radius:10px;padding:10px 12px}
+.os-par b{font:800 20px Manrope,sans-serif;display:block}
+.os-par small{font-size:12px;color:var(--texto)}
+.os-par .bar{height:5px;border-radius:5px;background:#E4ECF2;margin-top:8px;overflow:hidden}.os-par .bar i{display:block;height:100%;width:64%;background:linear-gradient(90deg,var(--turquesa),#F2A33A)}
+.os-nota{margin:10px 6px 0 0;text-align:right;font-size:12.5px;color:rgba(255,255,255,.55)}
+/* quem ganha */
+.ins-tres{display:grid;grid-template-columns:repeat(3,1fr);margin-top:72px;border-top:1px solid rgba(255,255,255,.16)}
+.ins-tres>div{padding:30px 32px 6px 0}
+.ins-tres>div+div{padding-left:32px;border-left:1px solid rgba(255,255,255,.12)}
+.ins-tres h3{font:800 20px Manrope,sans-serif;color:#fff;margin:0 0 4px}
+.ins-tres .sub{font-size:14px;color:var(--turquesa-300);margin:0 0 16px}
+.ins-tres ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ins-tres li{font-size:15px;color:rgba(255,255,255,.78);padding-left:22px;position:relative}
+.ins-tres li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:2px;background:var(--turquesa)}
+.ins-tres li b{color:#fff;font-weight:700}
+.ins-fim{margin-top:44px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.ins-fim p{margin:0;color:rgba(255,255,255,.7);font-size:15px}
+@media (max-width:1020px){.ins-topo{grid-template-columns:1fr;gap:40px}.osv{transform:none}.ins-tres{grid-template-columns:1fr}.ins-tres>div,.ins-tres>div+div{padding:24px 0 6px;border-left:0}.ins-tres>div+div{border-top:1px solid rgba(255,255,255,.12)}}
+@media (max-width:560px){.os-corpo{grid-template-columns:1fr}.os-lado{padding:0 22px 18px}.os-etapas li{font-size:10px}}
 @media (max-width:1020px){
   .modulos{grid-template-columns:1fr}.grade.g4{grid-template-columns:1fr 1fr}.nums .wrap{grid-template-columns:1fr 1fr}.vs{grid-template-columns:1fr}
   #fluxo .passos.seis{grid-template-columns:1fr 1fr}
@@ -475,7 +580,9 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
     <nav aria-label="Principal"><ul id="menu">
       <li><a href="#produtos">Produtos</a></li>
       <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#tour">Por dentro</a></li>
       <li><a href="#inspect">Inspect</a></li>
+      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#fluxo">Como funciona</a></li>
       <li><a href="#faq">Dúvidas</a></li>
     </</ul></nav>
@@ -730,6 +837,38 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   </div>
 </section>
 
+
+<!-- TOUR DO PRODUTO -->
+<section id="tour">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Por dentro do NEXUM Fleet</span>
+      <h2>Veja o sistema funcionando</h2>
+      <p>Telas reais da interface, com dados fictícios de demonstração.</p></div>
+    <div class="tour-abas rv" role="tablist" aria-label="Telas do sistema"><button role="tab" aria-selected="true" data-k="dashboard">Dashboard</button><button role="tab" aria-selected="false" data-k="mapa-online">Mapa online</button><button role="tab" aria-selected="false" data-k="rotas">Rotas</button><button role="tab" aria-selected="false" data-k="passageiros">Passageiros</button><button role="tab" aria-selected="false" data-k="medicao">Medição</button><button role="tab" aria-selected="false" data-k="alertas-frota">Checklist</button></div>
+    <div class="tour-grid rv">
+      <div class="tour-txt" id="tour-txt" aria-live="polite"></div>
+      <div class="moldura"><div class="mbarra"><i></i><i></i><i></i><span>fleet.nexum</span></div>
+        <img id="tour-img" src="site/prints/dashboard.webp" width="2160" height="1875" alt="Tela do dashboard do NEXUM Fleet" loading="lazy"></div>
+    </div>
+    <p class="tour-nota">Imagens de demonstração com dados fictícios. A interface é a do sistema.</p>
+  </div>
+</section>
+
+<!-- COMO COMEÇAR -->
+<section id="comecar">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Implantação</span>
+      <h2>Como começar com a NEXUM</h2>
+      <p>Um caminho simples, do primeiro contato à operação rodando.</p></div>
+    <div class="passos">
+      <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-message-circle"/></svg></div><h3>Conversa</h3><p>Entendemos a sua operação, o contrato e o que você precisa medir.</p></div>
+      <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Demonstração</h3><p>Você vê o sistema com o seu cenário e define os módulos.</p></div>
+      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-route"/></svg></div><h3>Configuração</h3><p>Cadastro de rotas, passageiros, veículos, acessos e escala de turmas.</p></div>
+      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-bus"/></svg></div><h3>Operação</h3><p>Motoristas no aplicativo, gestão no painel e acompanhamento da equipe.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- FLUXO FLEET -->
 <section id="fluxo">
   <div class="wrap">
@@ -765,34 +904,65 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <!-- INSPECT -->
 <section id="inspect">
   <div class="wrap">
-    <div class="cab c rv"><span class="eyebrow">NEXUM Inspect</span>
-      <h2>Oficina e contratante no mesmo registro</h2>
-      <p>Menos planilha, menos WhatsApp, mais prova. O que o time registra vira controle, histórico e decisão, sem retrabalho de digitação.</p></div>
-    <div class="grade">
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist que não se perde</h3><p>Itens OK, Não OK e N/A, item crítico que reprova a inspeção e modelos personalizáveis por empresa, com versões.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-camera"/></svg></div><h3>Provas que não se fraudam</h3><p>Carimbo dentro da foto, detecção de imagem repetida e alerta de retrabalho quando a mesma peça volta em pouco tempo.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento e aprovação</h3><p>A contratante aprova ou contesta item a item. Cliente direto aprova por link, sem precisar de login.</p></div>
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-package"/></svg></div><h3>Estoque visual</h3><p>Nível, cobertura em dias, curva ABC e baixa automática ao usar a peça na OS, com catálogo padronizado.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota fiscal e financeiro</h3><p>Leitura do XML da NF-e, conciliação por OS, fatura mensal automática e controle de a pagar, vencido e pago.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Tempo medido de verdade</h3><p>Cada mudança de situação grava data e hora. Veículo parado, prazo de aprovação e SLA ficam visíveis em painéis.</p></div>
-      <div class="rec rv"><div class="ico"><svg class="ic"><use href="#i-history"/></svg></div><h3>Histórico do veículo</h3><p>Tudo o que passou por cada placa, com fotos, peças, valores e responsáveis, a um clique.</p></div>
-      <div class="rec rv d1"><div class="ico"><svg class="ic"><use href="#i-building-2"/></svg></div><h3>Portais por perfil</h3><p>Visões próprias para oficinas, locadoras e frotas, cada uma vendo apenas o que lhe pertence.</p></div>
-      <div class="rec rv d2"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Pronto para Power BI</h3><p>Views preparadas para BI e relatórios em PDF para levar o resultado à reunião de contrato.</p></div>
+    <div class="ins-topo">
+      <div class="ins-txt rv"><span class="eyebrow">NEXUM Inspect</span>
+        <h2>Cada peça, cada foto e cada hora ficam na mesma ordem de serviço</h2>
+        <p>Oficina e contratante trabalham no mesmo registro. Menos planilha e WhatsApp, mais prova para decidir e para cobrar.</p>
+        <ul class="ins-pontos">
+          <li><span class="b"><svg class="ic"><use href="#i-wallet"/></svg></span><div><b>Só o aprovado vira serviço</b><span>A contratante aprova ou contesta item a item, antes da execução.</span></div></li>
+          <li><span class="b"><svg class="ic"><use href="#i-camera"/></svg></span><div><b>Foto com carimbo dentro da imagem</b><span>Data, hora, placa e responsável gravados na própria foto.</span></div></li>
+          <li><span class="b"><svg class="ic"><use href="#i-timer"/></svg></span><div><b>Tempo medido em cada etapa</b><span>Veículo parado e prazo de aprovação à vista, sem cronometrar na mão.</span></div></li>
+        </ul>
+        <a class="btn btn-pri" href="#contato" data-prod="NEXUM Inspect">Quero ver o Inspect em ação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="rv d1">
+        <div class="osv" role="group" aria-label="Exemplo de ordem de serviço do NEXUM Inspect">
+          <div class="os-cab"><div><b>OS 2481 · QWE-4F21</b><small>Caminhão-pipa · Parada preventiva</small></div><span class="os-chip" id="os-chip">Aguardando aprovação</span></div>
+          <ol class="os-etapas" aria-label="Etapas da ordem de serviço">
+            <li class="f">Agendada</li><li class="f">Entrada</li><li class="a">Orçamento</li><li>Execução</li><li>Saída</li><li>Faturada</li>
+          </ol>
+          <div class="os-corpo">
+            <div class="os-orc"><h4>Orçamento da oficina</h4>
+              <div id="os-itens"></div>
+              <div class="os-tot"><span>Total aprovado</span><div><b id="os-total">R$ 0,00</b><small id="os-cont"></small></div></div>
+            </div>
+            <div class="os-lado">
+              <div><h4>Evidência da entrada</h4>
+                <div class="os-foto" role="img" aria-label="Foto ilustrativa de um disco de freio com carimbo de data, hora e placa">
+                  <svg viewBox="0 0 160 120" aria-hidden="true"><circle cx="80" cy="52" r="38" fill="#5c6b7a"/><circle cx="80" cy="52" r="30" fill="#7d8c9a"/><circle cx="80" cy="52" r="10" fill="#26343f"/><g fill="#26343f"><circle cx="80" cy="30" r="3.5"/><circle cx="99" cy="41" r="3.5"/><circle cx="99" cy="63" r="3.5"/><circle cx="80" cy="74" r="3.5"/><circle cx="61" cy="63" r="3.5"/><circle cx="61" cy="41" r="3.5"/></g></svg>
+                  <i>22/10/2026 14:32 · QWE-4F21<br>Rafael M. · Oficina Central</i></div></div>
+              <div class="os-par"><b>2 d 04 h</b><small>veículo parado · SLA de 3 dias</small><div class="bar"><i></i></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="os-nota">Exemplo ilustrativo com dados fictícios. Toque nos botões para aprovar ou contestar.</p>
+      </div>
     </div>
-
-    <div class="subtit rv"><h3>O caminho de uma ordem de serviço</h3><p>Nada é executado sem aprovação, e a contratante enxerga tudo no mesmo registro da oficina.</p></div>
-    <div class="passos lt">
-      <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-calendar"/></svg></div><h3>Agendar</h3><p>Veículo entra na parada e a OS é aberta para a oficina.</p></div>
-      <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Checklist de entrada</h3><p>Estado do veículo registrado com foto, offline se for preciso.</p></div>
-      <div class="passo rv d2"><div class="n"><svg class="ic"><use href="#i-wallet"/></svg></div><h3>Orçamento aprovado</h3><p>Só o aprovado vira tarefa.</p></div>
-      <div class="passo rv d3"><div class="n"><svg class="ic"><use href="#i-wrench"/></svg></div><h3>Execução e saída</h3><p>Foto por tarefa e checklist de saída.</p></div>
-      <div class="passo rv d4"><div class="n"><svg class="ic"><use href="#i-receipt"/></svg></div><h3>Nota e fatura</h3><p>NF-e conciliada, fatura do mês e pagamento registrado.</p></div>
+    <div class="ins-tres">
+      <div><h3>Para a oficina</h3><p class="sub">Menos digitação, menos retrabalho</p>
+        <ul><li><b>Checklist de entrada e saída</b> com foto, mesmo offline.</li><li><b>Estoque visual</b> com cobertura em dias, curva ABC e baixa automática ao usar a peça.</li><li><b>Nota fiscal por XML</b> conciliada com a OS.</li></ul></div>
+      <div><h3>Para a contratante</h3><p class="sub">Controle sem depender de cobrança</p>
+        <ul><li><b>Aprovação item a item</b>; o cliente direto aprova por link, sem login.</li><li><b>Detecção de imagem repetida</b> e alerta quando a mesma peça volta em pouco tempo.</li><li><b>Histórico de cada placa</b> com fotos, peças, valores e responsáveis.</li></ul></div>
+      <div><h3>Para a gestão</h3><p class="sub">Decisão com número, não com opinião</p>
+        <ul><li><b>Painéis de tempo</b>: veículo parado, prazo de aprovação e SLA.</li><li><b>Fatura mensal</b> automática, com a pagar, vencido e pago.</li><li><b>Power BI e PDF</b> prontos para a reunião de contrato, com portais por perfil.</li></ul></div>
     </div>
-    <div style="text-align:center;margin-top:44px" class="rv"><a class="btn btn-esc" href="#contato" data-prod="NEXUM Inspect">Quero ver o Inspect em ação <svg class="ic"><use href="#i-arrow-right"/></svg></a></div>
   </div>
 </section>
 
 <!-- PARA QUEM -->
+<!-- PROJETOS SOB MEDIDA -->
+<section id="projetos">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Projetos sob medida</span>
+      <h2>Tem um projeto? Traga para a NEXUM desenvolver</h2>
+      <p>Além dos produtos prontos, desenvolvemos soluções para a necessidade específica da sua empresa. Você traz a ideia, o processo ou a planilha que hoje dá trabalho; a gente transforma em sistema.</p></div>
+    <div class="proj-grid"><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-chart-column"/></svg></div><h3>Dashboards e Power BI</h3><p>Indicadores da sua operação em painéis claros, ligados às suas planilhas, bancos e sistemas atuais.</p></div><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-radio-tower"/></svg></div><h3>Integração com rastreadores e APIs</h3><p>Leitura de posição, eventos e telemetria de rastreadores e de outros sistemas, levados para um só lugar.</p></div><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-zap"/></svg></div><h3>Automações de processos</h3><p>Fluxos que tiram do papel e da planilha as tarefas repetidas: aprovações, avisos, consolidações e relatórios.</p></div><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-layers"/></svg></div><h3>Sistemas web sob medida</h3><p>Cadastros, gestão e acompanhamento do seu setor em um sistema próprio, com acessos por perfil.</p></div><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-smartphone"/></svg></div><h3>Aplicativos de campo</h3><p>Registro no celular pelo motorista, vistoriador ou equipe, com funcionamento mesmo sem sinal.</p></div><div class="proj rv"><div class="ico"><svg class="ic"><use href="#i-file-text"/></svg></div><h3>Consolidação de planilhas</h3><p>Várias planilhas e medições em uma base única e confiável, pronta para análise e para o contrato.</p></div></div>
+    <div class="proj-etapas"><div class="rv"><b>1. Conversa</b><span>Você conta o problema e o que precisa mudar na rotina.</span></div><div class="rv"><b>2. Escopo</b><span>Combinamos o que será entregue, em etapas curtas e claras.</span></div><div class="rv"><b>3. Construção</b><span>Você acompanha e valida cada entrega durante o desenvolvimento.</span></div><div class="rv"><b>4. Entrega e evolução</b><span>Sistema no ar, equipe orientada e ajustes conforme o uso.</span></div></div>
+    <div class="proj-cta rv"><p>Não sabe por onde começar? Conte o desafio em poucas linhas.</p>
+      <a class="btn btn-pri" href="#contato" data-prod="Projeto sob medida">Quero conversar sobre meu projeto <svg class="ic"><use href="#i-arrow-right"/></svg></a></div>
+  </div>
+</section>
+
 <section id="paraquem">
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Para quem</span>
@@ -904,7 +1074,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div class="rod">
       <div><img src="site/logos/nexum-systems-escuro.svg" alt="NEXUM Systems" width="150" height="40"><p>Sistemas de gestão para transporte coletivo, frotas e oficinas. Simples de usar, rigorosos nos registros.</p></div>
-      <div><h4>Produtos</h4><ul><li><a href="#fleet">NEXUM Fleet</a></li><li><a href="#inspect">NEXUM Inspect</a></li><li><a href="#contato">Projeto sob medida</a></li></ul></div>
+      <div><h4>Produtos</h4><ul><li><a href="#fleet">NEXUM Fleet</a></li><li><a href="#inspect">NEXUM Inspect</a></li><li><a href="#projetos">Projetos sob medida</a></li></ul></div>
       <div><h4>Empresa</h4><ul><li><a href="#dores">O problema que resolvemos</a></li><li><a href="#fluxo">Como funciona</a></li><li><a href="#paraquem">Para quem</a></li></ul></div>
       <div><h4>Ajuda</h4><ul><li><a href="#faq">Perguntas frequentes</a></li><li><a href="#contato">Contato</a></li></ul></div>
     </div>
@@ -960,6 +1130,50 @@ var CONTATO_WHATSAPP = "5594992907735";  /* somente números com DDI e DDD, ex.:
     location.href='mailto:'+CONTATO_EMAIL+'?subject='+encodeURIComponent('Contato pelo site: '+d.get('produto'))+'&body='+encodeURIComponent(corpo);
     ok.className='ok-msg on';ok.textContent='Pronto! Abrimos o seu aplicativo de e-mail com a mensagem preparada. É só enviar.';
   });
+})();
+
+(function(){
+  var D={"dashboard": {"t": "Painel operacional do dia", "p": "A visão do gestor logo ao abrir o sistema: o que precisa de atenção e como a operação está indo.", "l": ["Pendências priorizadas com atalho direto", "Cobertura de rotas, viagens, km e ocupação real", "Rotas do dia conforme a escala de turmas"]}, "mapa-online": {"t": "Frota ao vivo no mapa", "p": "Todo veículo com posição recente, com rastreador ou com o celular do motorista.", "l": ["Em movimento, parado e sem sinal à primeira vista", "Busca por placa, motorista ou rota", "Ocupação e rota de cada viagem em andamento"]}, "rotas": {"t": "Cadastro e gestão de rotas", "p": "Rotas com base, turno, pontos de embarque, limites de km e duração e situação ativa ou inativa.", "l": ["Importação por KMZ e exportação de pontos", "Limites de distância e tempo por rota", "Ativar e desativar sem perder o histórico"]}, "passageiros": {"t": "Gestão de passageiros", "p": "Cada pessoa vinculada a uma rota, ponto de embarque e turno, com as pendências sempre à vista.", "l": ["Importação por planilha e logins do portal", "Alertas de quem está sem rota ou sem ponto", "Solicitações de mudança com análise do gestor"]}, "medicao": {"t": "Medição contratual de km", "p": "Grade de km por rota e dia: o que está dentro da tolerância é aprovado sozinho, o resto vai para decisão.", "l": ["Status por célula: aprovado, pendente, reprovado", "Aprovação em lote e fechamento do período", "Boletim pelo QQP do contrato e trilha de auditoria"]}, "alertas-frota": {"t": "Alertas e checklist da frota", "p": "O checklist do motorista vira alerta na hora quando um item crítico reprova.", "l": ["Veículo inapto sinalizado como crítico", "Tratamento registrado com motivo e responsável", "Histórico de não conformidades por veículo"]}};
+  var txt=document.getElementById('tour-txt'),img=document.getElementById('tour-img');
+  var nomes={'dashboard':'dashboard','mapa-online':'mapa online','rotas':'gestão de rotas','passageiros':'lista de passageiros','medicao':'grade de medição','alertas-frota':'alertas e checklist'};
+  function mostra(k){
+    var d=D[k];if(!d)return;
+    var h='<h3></h3><p></p><ul></ul>';txt.innerHTML=h;
+    txt.querySelector('h3').textContent=d.t;txt.querySelector('p').textContent=d.p;
+    var ul=txt.querySelector('ul');
+    d.l.forEach(function(x){var li=document.createElement('li');li.innerHTML='<svg class="ic"><use href="#i-check"/></svg><span></span>';li.lastChild.textContent=x;ul.appendChild(li)});
+    img.src='site/prints/'+k+'.webp';img.alt='Tela de '+nomes[k]+' do NEXUM Fleet';
+    img.height=(k==='dashboard')?1875:1350;
+  }
+  var bs=document.querySelectorAll('.tour-abas button');
+  bs.forEach(function(b){b.addEventListener('click',function(){
+    bs.forEach(function(o){o.setAttribute('aria-selected',o===b?'true':'false')});mostra(b.dataset.k)})});
+  mostra('dashboard');
+})();
+
+(function(){
+  var itens=[['Pastilha de freio dianteira',640],['Disco de freio (par)',1180],['Fluido DOT 4',96],['Mão de obra, 3,5 h',420]];
+  var est=['ap',null,null,null]; // aprovado, contestado ou pendente
+  var box=document.getElementById('os-itens'),tot=document.getElementById('os-total'),ct=document.getElementById('os-cont'),chip=document.getElementById('os-chip');
+  if(!box)return;
+  var R=function(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2})};
+  function desenha(){
+    box.innerHTML='';var a=0,c=0,pend=0;
+    itens.forEach(function(it,i){
+      var d=document.createElement('div');d.className='os-item'+(est[i]==='ct'?' cont':'');
+      d.innerHTML='<span></span><em></em><div class="ac"><button type="button" class="ap"></button><button type="button" class="ct"></button></div>';
+      d.children[0].textContent=it[0];d.children[1].textContent=R(it[1]);
+      var b=d.querySelectorAll('button');b[0].textContent='Aprovar';b[1].textContent='Contestar';
+      b[0].setAttribute('aria-pressed',est[i]==='ap');b[1].setAttribute('aria-pressed',est[i]==='ct');
+      b[0].onclick=function(){est[i]=est[i]==='ap'?null:'ap';desenha()};
+      b[1].onclick=function(){est[i]=est[i]==='ct'?null:'ct';desenha()};
+      box.appendChild(d);
+      if(est[i]==='ap')a+=it[1];else if(est[i]==='ct')c+=it[1];else pend++;
+    });
+    tot.textContent=R(a);ct.textContent=c?R(c)+' contestado':'';
+    if(pend===0){chip.textContent='Decisão registrada';chip.className='os-chip ok'}else{chip.textContent=pend+(pend>1?' itens aguardando':' item aguardando');chip.className='os-chip'}
+  }
+  desenha();
 })();
 </script>
 </body>
