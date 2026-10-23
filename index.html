@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NEXUM Systems | Frota, passageiros e oficina sob controle</title>
-<meta name="description" content="NEXUM Fleet: rotas, passageiros, computador de bordo, rastreamento e medição do contrato em um só sistema. NEXUM Inspect: vistoria com foto como prova, ordens de serviço e manutenção. Peça uma apresentação.">
+<meta name="description" content="Chega de planilha. NEXUM Fleet: rotas, passageiros, rastreamento e conferência de quilômetros em um só sistema. NEXUM Inspect: manutenção com foto, orçamento aprovado e fatura. Peça uma apresentação.">
 <meta property="og:title" content="NEXUM Systems | Frota, passageiros e oficina sob controle">
-<meta property="og:description" content="Do cadastro da rota à medição do contrato. Da vistoria à fatura paga. Sistemas que funcionam até sem sinal.">
+<meta property="og:description" content="Chega de planilha: rotas, passageiros, frota e manutenção em um só lugar. Funciona até sem sinal.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#142B45">
 <link rel="icon" type="image/svg+xml" href="site/nexum-icone.svg">
@@ -480,6 +480,30 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   .rv{opacity:1;transform:none}.barra i::after{transform:scaleX(1)}
   html{scroll-behavior:auto}
 }
+/* otimização na prática */
+#otimizacao{background:linear-gradient(180deg,var(--marinho-900),var(--marinho));color:#fff}
+#otimizacao .cab h2{color:#fff}#otimizacao .cab p{color:#B9C8D8}#otimizacao .eyebrow{color:var(--turquesa-300)}
+.otm{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:stretch}
+.otm-map{background:#0F2237;border:1px solid rgba(255,255,255,.1);border-radius:var(--raio-xl);padding:14px;box-shadow:var(--sombra-forte);display:flex;flex-direction:column}
+.otm-map svg{width:100%;height:auto;border-radius:16px;background:#0B1B2C;display:block}
+.otm-leg{display:flex;flex-wrap:wrap;gap:8px 16px;padding:14px 8px 4px;font-size:13.5px;color:#C9D6E3;min-height:44px}
+.otm-leg span{display:inline-flex;align-items:center;gap:8px}.otm-leg i{width:18px;height:4px;border-radius:3px;display:inline-block}
+.otm-painel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--raio-xl);padding:26px;display:flex;flex-direction:column;gap:18px}
+.otm-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.otm-kpi{background:rgba(255,255,255,.06);border-radius:var(--raio);padding:14px 16px}
+.otm-kpi b{display:block;font:800 30px/1.1 Manrope,sans-serif;font-variant-numeric:tabular-nums}
+.otm-kpi span{font-size:13px;color:#B9C8D8}
+.otm-kpi em{display:block;font-style:normal;font:700 12.5px Manrope,sans-serif;color:var(--turquesa-300);min-height:18px;margin-top:2px}
+.otm-chip{align-self:flex-start;font:700 13px Manrope,sans-serif;padding:7px 14px;border-radius:99px;background:rgba(255,255,255,.1);color:#DCE8F1}
+.otm-chip.rasc{background:rgba(242,184,75,.16);color:#F2B84B}.otm-chip.ok{background:rgba(53,183,164,.2);color:var(--turquesa-300)}
+.otm-btns{display:flex;flex-wrap:wrap;gap:10px}
+.otm-btns .btn{min-height:46px}
+.otm-btns .btn[hidden]{display:none}
+.otm-lista{list-style:none;padding:0;display:grid;gap:10px;font-size:14.5px;color:#C9D6E3}
+.otm-lista li{display:flex;gap:10px}.otm-lista .ic{color:var(--turquesa);margin-top:3px}
+.otm-nota{margin-top:20px;text-align:center;font-size:13.5px;color:#9FB2C6}
+@media (max-width:900px){.otm{grid-template-columns:1fr}.otm-kpi b{font-size:26px}}
+.otm-map{justify-content:center}
 </style>
 </head>
 <body>
@@ -610,14 +634,14 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div>
       <span class="selo"><b><svg class="ic"><use href="#i-check"/></svg></b>Feito para a operação real, no campo e na mina</span>
-      <h1>Cada rota, cada passageiro e cada veículo <span class="grad">sob controle</span>.</h1>
-      <p class="lead">O NEXUM Fleet leva o transporte coletivo do cadastro da rota à medição do contrato, com rastreamento, computador de bordo e portal do passageiro. O NEXUM Inspect cuida da oficina: vistoria com foto como prova, ordens de serviço e fatura. Tudo registrado, até sem sinal.</p>
+      <h1>Chega de planilha: frota, passageiros e manutenção <span class="grad">em um só lugar</span>.</h1>
+      <p class="lead">Com o NEXUM Fleet, você sabe onde cada ônibus está, quem embarcou e quantos quilômetros foram rodados. Com o NEXUM Inspect, acompanha cada conserto com foto e orçamento aprovado. Tudo fica registrado, até onde não tem sinal.</p>
       <div class="cta">
         <a class="btn btn-pri" href="#contato" data-prod="NEXUM Fleet">Pedir uma apresentação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
         <a class="btn btn-sec" href="#fleet">Ver o NEXUM Fleet</a>
       </div>
       <div class="hero-pontos">
-        <span><svg class="ic"><use href="#i-wifi-off"/></svg>Funciona offline</span>
+        <span><svg class="ic"><use href="#i-wifi-off"/></svg>Funciona sem internet</span>
         <span><svg class="ic"><use href="#i-map-pin"/></svg>Frota ao vivo</span>
         <span><svg class="ic"><use href="#i-smartphone"/></svg>Web e Android</span>
       </div>
@@ -698,15 +722,15 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <section id="produtos">
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Nossos sistemas</span>
-      <h2>Dois produtos, uma só linguagem</h2>
-      <p>Cada sistema resolve um problema de frota de ponta a ponta. Mesma marca, mesmo padrão de uso e a liberdade de contratar só o que você precisa.</p></div>
+      <h2>Um sistema para o transporte, outro para a manutenção</h2>
+      <p>Um cuida do transporte de pessoas, o outro da manutenção dos veículos. Use um ou os dois, e contrate só o que a sua operação precisa.</p></div>
 
     <div class="prod">
       <article class="card esc destaque rv">
         <span class="selo-dest">Em destaque</span>
         <img class="logo" src="site/logos/nexum-fleet-escuro.svg" alt="NEXUM Fleet" height="46">
         <h3>Frota, rastreamento e passageiros</h3>
-        <p>Da rota cadastrada ao ônibus no mapa, do embarque por crachá à medição do contrato. Um sistema só, vendido em módulos, com serviço completo da NEXUM.</p>
+        <p>Do ônibus no mapa ao embarque por crachá e ao quilômetro conferido. Um sistema só, contratado por partes, com serviço completo da NEXUM.</p>
         <div class="tags"><span class="tag">Transportadoras</span><span class="tag">Mineradoras</span><span class="tag">Transporte coletivo</span></div>
         <ul class="lista">
           <li><svg class="ic"><use href="#i-check"/></svg>Rotas com limite de lugares por turma e reserva para faltas, e sugestões de melhoria que só valem depois que o gestor aprova</li>
@@ -774,8 +798,8 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <section id="fleet">
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">NEXUM Fleet</span>
-      <h2>Do cadastro da rota à medição do contrato</h2>
-      <p>Três módulos que se complementam. Contrate o conjunto ou só o que a sua operação precisa: o sistema esconde o resto.</p></div>
+      <h2>Da rota ao quilômetro conferido, sem planilha no meio</h2>
+      <p>Três partes que funcionam juntas. Contrate todas ou só a que a sua operação precisa: o sistema esconde o resto.</p></div>
 
     <div class="modulos">
       <div class="mod rv"><div class="ico"><svg class="ic"><use href="#i-users"/></svg></div>
@@ -812,7 +836,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 
       <div class="rec m rv"><div class="ico"><svg class="ic"><use href="#i-bell"/></svg></div><h3>Alertas da frota</h3><p>Vistoria com item crítico reprovado vira alerta na hora para o responsável, que trata com motivo e fica registrado.</p></div>
       <div class="rec m rv d1"><div class="ico"><svg class="ic"><use href="#i-timer"/></svg></div><h3>Viagem nunca fica esquecida</h3><p>O gestor encerra a viagem ou o sistema encerra sozinho depois de um tempo. O veículo reserva de um que quebrou fica ligado à viagem original.</p></div>
-      <div class="rec m rv d2"><div class="ico"><svg class="ic"><use href="#i-file-text"/></svg></div><h3>Medição sem briga</h3><p>Quilômetros por rota e dia aprovados em etapas, com a linha de pagamento do contrato, viagens extras e fechamento do mês. Só rotas ativas entram na conta.</p></div>
+      <div class="rec m rv d2"><div class="ico"><svg class="ic"><use href="#i-file-text"/></svg></div><h3>Quilômetros sem discussão</h3><p>Quilômetros por rota e dia aprovados em etapas, com a linha de pagamento do contrato, viagens extras e fechamento do mês. Só rotas ativas entram na conta.</p></div>
       <div class="rec m rv d3"><div class="ico"><svg class="ic"><use href="#i-scan-line"/></svg></div><h3>Análise de embarque</h3><p>Compara os registros de crachá com o cadastro e mostra quem embarcou na rota errada, com histórico e decisão do gestor se repetir.</p></div>
 
       <div class="rec m rv"><div class="ico"><svg class="ic"><use href="#i-clock"/></svg></div><h3>Pontualidade e quebras</h3><p>Atrasos por rota e transportadora, possíveis quebras de veículo identificadas e provas para a conversa sobre o contrato.</p></div>
@@ -828,7 +852,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap split">
     <div class="rv">
       <span class="eyebrow">Gestão de passageiros</span>
-      <h2>Lotação certa, nem um assento a menos nem ônibus vazio</h2>
+      <h2>Cada passageiro no ônibus certo: sem lotar e sem rodar vazio</h2>
       <p>Cada rota tem capacidade por turma, com uma reserva percentual para cobrir faltas. Quando não há vaga, o sistema avisa e mostra o caminho em vez de deixar o passageiro sem rota.</p>
       <ul class="vant">
         <li><span class="ck"><svg class="ic"><use href="#i-check"/></svg></span><div><b>O sistema sugere, o gestor decide</b><span>Sugestões ficam em rascunho, a versão anterior é arquivada e nenhuma rota ativa muda sozinha.</span></div></li>
@@ -856,13 +880,48 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
     <div class="cab c rv"><span class="eyebrow">Por dentro do NEXUM Fleet</span>
       <h2>Veja o sistema funcionando</h2>
       <p>Telas reais da interface, com dados fictícios de demonstração.</p></div>
-    <div class="tour-abas rv" role="tablist" aria-label="Telas do sistema"><button role="tab" aria-selected="true" data-k="dashboard">Dashboard</button><button role="tab" aria-selected="false" data-k="mapa-online">Mapa online</button><button role="tab" aria-selected="false" data-k="rotas">Rotas</button><button role="tab" aria-selected="false" data-k="passageiros">Passageiros</button><button role="tab" aria-selected="false" data-k="medicao">Quilômetros</button><button role="tab" aria-selected="false" data-k="alertas-frota">Vistorias</button></div>
+    <div class="tour-abas rv" role="tablist" aria-label="Telas do sistema"><button role="tab" aria-selected="true" data-k="dashboard">Dashboard</button><button role="tab" aria-selected="false" data-k="mapa-online">Mapa online</button><button role="tab" aria-selected="false" data-k="rotas">Rotas</button><button role="tab" aria-selected="false" data-k="mapa-rotas">Rotas no mapa</button><button role="tab" aria-selected="false" data-k="passageiros">Passageiros</button><button role="tab" aria-selected="false" data-k="medicao">Quilômetros</button><button role="tab" aria-selected="false" data-k="alertas-frota">Vistorias</button></div>
     <div class="tour-grid rv">
       <div class="tour-txt" id="tour-txt" aria-live="polite"></div>
       <div class="moldura"><div class="mbarra"><i></i><i></i><i></i><span>fleet.nexum</span></div>
         <img id="tour-img" src="site/prints/dashboard.webp" width="2160" height="1875" alt="Tela do dashboard do NEXUM Fleet" loading="lazy"></div>
     </div>
     <p class="tour-nota">Imagens de demonstração com dados fictícios. A interface é a do sistema.</p>
+  </div>
+</section>
+
+<!-- OTIMIZAÇÃO NA PRÁTICA -->
+<section id="otimizacao">
+  <div class="wrap">
+    <div class="cab c rv"><span class="eyebrow">Otimização de rotas</span>
+      <h2>Menos ônibus rodando, mais gente no lugar certo</h2>
+      <p>Veja na prática o que o sistema faz com as suas rotas. Clique em Otimizar e acompanhe o antes e o depois.</p></div>
+    <div class="otm rv" id="otm">
+      <div class="otm-map">
+        <svg viewBox="0 0 640 400" role="img" aria-label="Mapa ilustrativo com as rotas antes e depois da otimização"></svg>
+        <div class="otm-leg" aria-live="polite"></div>
+      </div>
+      <div class="otm-painel">
+        <div class="otm-kpis">
+          <div class="otm-kpi"><b data-k="rotas">-</b><span>Rotas</span><em data-d="rotas"></em></div>
+          <div class="otm-kpi"><b data-k="km">-</b><span>Quilômetros por dia</span><em data-d="km"></em></div>
+          <div class="otm-kpi"><b data-k="occ">-</b><span>Lotação média</span><em data-d="occ"></em></div>
+          <div class="otm-kpi"><b data-k="pass">-</b><span>Passageiros atendidos</span><em>os mesmos</em></div>
+        </div>
+        <span class="otm-chip">Situação atual</span>
+        <div class="otm-btns">
+          <button class="btn btn-pri" id="otm-go" type="button">Otimizar rotas</button>
+          <button class="btn btn-pri" id="otm-ok" type="button" hidden>Aprovar proposta</button>
+          <button class="btn btn-sec" id="otm-undo" type="button" hidden>Descartar proposta</button>
+        </div>
+        <ul class="otm-lista">
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Cada base é otimizada separada: passageiros de bases diferentes nunca se misturam.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>Junta rotas ociosas e reordena as paradas, respeitando limite de quilômetros e de tempo.</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span>É só uma proposta: nada muda sem a aprovação do gestor, e dá para desfazer.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="otm-nota">Simulação ilustrativa com dados fictícios. No sistema, o cálculo usa os endereços reais dos passageiros e os limites de cada rota.</p>
   </div>
 </section>
 
@@ -885,8 +944,8 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 <section id="fluxo">
   <div class="wrap">
     <div class="cab c rv"><span class="eyebrow">Como funciona</span>
-      <h2>Um dia de operação no NEXUM Fleet</h2>
-      <p>Do cadastro à medição, cada etapa tem responsável, hora registrada e evidência.</p></div>
+      <h2>Um dia de operação, do começo ao fim</h2>
+      <p>Cada etapa tem um responsável, a hora registrada e a prova guardada.</p></div>
     <div class="passos seis">
       <div class="passo rv"><div class="n"><svg class="ic"><use href="#i-route"/></svg></div><h3>Planejar</h3><p>Rotas, pontos, horários e passageiros vinculados à turma.</p></div>
       <div class="passo rv d1"><div class="n"><svg class="ic"><use href="#i-clipboard-check"/></svg></div><h3>Vistoria</h3><p>Motorista confere o veículo. Item crítico gera alerta na hora.</p></div>
@@ -909,7 +968,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
 
 <!-- CTA MEIO -->
 <div class="meio"><div class="wrap">
-  <div><h2>Veja o NEXUM Fleet funcionando com a sua operação</h2><p>Mostramos rota, bordo, mapa e medição com um cenário parecido com o seu. Sem compromisso.</p></div>
+  <div><h2>Veja o NEXUM Fleet funcionando com a sua operação</h2><p>Mostramos rotas, motoristas, mapa e quilômetros com um cenário parecido com o seu. Sem compromisso.</p></div>
   <a class="btn btn-pri" href="#contato" data-prod="NEXUM Fleet">Agendar apresentação <svg class="ic"><use href="#i-arrow-right"/></svg></a>
 </div></div>
 
@@ -918,7 +977,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div class="ins-topo">
       <div class="ins-txt rv"><span class="eyebrow">NEXUM Inspect</span>
-        <h2>Cada peça, cada foto e cada hora ficam na mesma ordem de serviço</h2>
+        <h2>Manutenção sem discussão: cada peça, foto e hora na mesma ordem de serviço</h2>
         <p>Oficina e contratante trabalham no mesmo registro. Menos planilha e WhatsApp, mais prova para decidir e para cobrar.</p>
         <ul class="ins-pontos">
           <li><span class="b"><svg class="ic"><use href="#i-wallet"/></svg></span><div><b>Só o aprovado vira serviço</b><span>A contratante aprova ou contesta item a item, antes da execução.</span></div></li>
@@ -1056,7 +1115,7 @@ footer{background:var(--marinho-900);color:rgba(255,255,255,.7);padding:64px 0 3
   <div class="wrap">
     <div class="rv">
       <span class="eyebrow">Contato</span>
-      <h2>Vamos colocar a sua operação sob controle?</h2>
+      <h2>Vamos tirar a sua operação da planilha?</h2>
       <p class="sub">Conte o seu cenário e a gente mostra, na prática, como o sistema encaixa no seu dia a dia.</p>
       <div class="canais">
         <a class="canal" id="cEmail" href="#"><span class="ico"><svg class="ic"><use href="#i-mail"/></svg></span><div><b>E-mail</b><span id="tEmail">contato@nexumsystems.com.br</span></div></a>
@@ -1157,9 +1216,9 @@ var CONTATO_WHATSAPP = "5594992907735";  /* somente números com DDI e DDD, ex.:
 })();
 
 (function(){
-  var D={"dashboard": {"t": "Painel operacional do dia", "p": "A visão do gestor logo ao abrir o sistema: o que precisa de atenção e como a operação está indo.", "l": ["Pendências priorizadas com atalho direto", "Cobertura de rotas, viagens, km e ocupação real", "Rotas do dia conforme a escala de turmas"]}, "mapa-online": {"t": "Frota ao vivo no mapa", "p": "Todo veículo com posição recente, com rastreador ou com o celular do motorista.", "l": ["Em movimento, parado e sem sinal à primeira vista", "Busca por placa, motorista ou rota", "Ocupação e rota de cada viagem em andamento"]}, "rotas": {"t": "Cadastro e gestão de rotas", "p": "Rotas com base, turno, pontos de embarque, limites de km e duração e situação ativa ou inativa.", "l": ["Importação de trajetos e exportação de pontos", "Limites de distância e tempo por rota", "Ativar e desativar sem perder o histórico"]}, "passageiros": {"t": "Gestão de passageiros", "p": "Cada pessoa vinculada a uma rota, ponto de embarque e turno, com as pendências sempre à vista.", "l": ["Importação por planilha e logins do portal", "Alertas de quem está sem rota ou sem ponto", "Solicitações de mudança com análise do gestor"]}, "medicao": {"t": "Conferência de quilômetros do contrato", "p": "Quilômetros por rota e dia: o que está dentro da margem combinada é aprovado sozinho, o resto vai para decisão.", "l": ["Status por célula: aprovado, pendente, reprovado", "Aprovação em lote e fechamento do período", "Fechamento pelo valor do contrato e histórico de quem decidiu"]}, "alertas-frota": {"t": "Vistorias e alertas da frota", "p": "A vistoria do motorista vira alerta na hora quando um item crítico reprova.", "l": ["Veículo inapto sinalizado como crítico", "Tratamento registrado com motivo e responsável", "Histórico de não conformidades por veículo"]}};
+  var D={"dashboard": {"t": "Painel operacional do dia", "p": "A visão do gestor logo ao abrir o sistema: o que precisa de atenção e como a operação está indo.", "l": ["Pendências priorizadas com atalho direto", "Cobertura de rotas, viagens, km e ocupação real", "Rotas do dia conforme a escala de turmas"]}, "mapa-online": {"t": "Frota ao vivo no mapa", "p": "Todo veículo com posição recente, com rastreador ou com o celular do motorista.", "l": ["Em movimento, parado e sem sinal à primeira vista", "Busca por placa, motorista ou rota", "Ocupação e rota de cada viagem em andamento"]}, "rotas": {"t": "Cadastro e gestão de rotas", "p": "Cada rota com base, turno, pontos de embarque, limites de km e duração, ativa ou inativa.", "l": ["Importação de trajetos e exportação de pontos", "Limites de distância e tempo por rota", "Ativar e desativar sem perder o histórico"]}, "mapa-rotas": {"t": "Todas as rotas desenhadas no mapa", "p": "O trajeto de cada rota sobre o mapa da cidade, cada uma com sua cor e seus pontos de embarque numerados.", "l": ["Veja a base inteira de uma vez ou foque em uma rota", "Trajetos importados do Google Earth (KMZ) ou propostos pela otimização", "Passageiros, paradas e quilômetros de cada rota ao lado"]}, "passageiros": {"t": "Gestão de passageiros", "p": "Cada pessoa vinculada a uma rota, ponto de embarque e turno, com as pendências sempre à vista.", "l": ["Importação por planilha e logins do portal", "Alertas de quem está sem rota ou sem ponto", "Solicitações de mudança com análise do gestor"]}, "medicao": {"t": "Conferência de quilômetros do contrato", "p": "Quilômetros por rota e dia: o que está dentro da margem combinada é aprovado sozinho, o resto vai para decisão.", "l": ["Status por célula: aprovado, pendente, reprovado", "Aprovação em lote e fechamento do período", "Fechamento pelo valor do contrato e histórico de quem decidiu"]}, "alertas-frota": {"t": "Vistorias e alertas da frota", "p": "A vistoria do motorista vira alerta na hora quando um item crítico reprova.", "l": ["Veículo inapto sinalizado como crítico", "Tratamento registrado com motivo e responsável", "Histórico de não conformidades por veículo"]}};
   var txt=document.getElementById('tour-txt'),img=document.getElementById('tour-img');
-  var nomes={'dashboard':'dashboard','mapa-online':'mapa online','rotas':'gestão de rotas','passageiros':'lista de passageiros','medicao':'grade de medição','alertas-frota':'alertas e checklist'};
+  var nomes={'dashboard':'dashboard','mapa-online':'mapa online','rotas':'gestão de rotas','mapa-rotas':'rotas no mapa','passageiros':'lista de passageiros','medicao':'grade de medição','alertas-frota':'alertas e checklist'};
   function mostra(k){
     var d=D[k];if(!d)return;
     var h='<h3></h3><p></p><ul></ul>';txt.innerHTML=h;
@@ -1167,7 +1226,7 @@ var CONTATO_WHATSAPP = "5594992907735";  /* somente números com DDI e DDD, ex.:
     var ul=txt.querySelector('ul');
     d.l.forEach(function(x){var li=document.createElement('li');li.innerHTML='<svg class="ic"><use href="#i-check"/></svg><span></span>';li.lastChild.textContent=x;ul.appendChild(li)});
     img.src='site/prints/'+k+'.webp';img.alt='Tela de '+nomes[k]+' do NEXUM Fleet';
-    img.height=(k==='dashboard')?1875:1350;
+    img.height=(k==='dashboard')?1875:(k==='mapa-rotas')?912:1350;
   }
   var bs=document.querySelectorAll('.tour-abas button');
   bs.forEach(function(b){b.addEventListener('click',function(){
@@ -1218,6 +1277,79 @@ var CONTATO_WHATSAPP = "5594992907735";  /* somente números com DDI e DDD, ex.:
   bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(o){o.setAttribute('aria-selected',o===b?'true':'false')});mostra(b.dataset.k)})});
   mostra('inspect-orcamento-os');
 })();
+</script>
+<script>
+(function(){
+  var root=document.getElementById('otm');if(!root)return;
+  var NS='http://www.w3.org/2000/svg',W=640,H=400,BASE={x:540,y:200},KM=0.034,CAP=44;
+  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
+  // paradas: 5 bairros espalhados a oeste da base
+  var cent=[[110,90],[130,300],[270,200],[330,70],[350,330]],stops=[];
+  for(var c=0;c<cent.length;c++){for(var i=0;i<7+(c%2);i++){
+    stops.push({x:Math.round(Math.max(24,Math.min(460,cent[c][0]+(rnd()-.5)*140))/20)*20,y:Math.round(Math.max(26,Math.min(374,cent[c][1]+(rnd()-.5)*120))/20)*20,p:1+Math.floor(rnd()*4)});
+  }}
+  var N=stops.length,total=stops.reduce(function(a,s){return a+s.p},0);
+  function d(a,b){return Math.abs(a.x-b.x)+Math.abs(a.y-b.y)}
+  function len(list){var t=0,prev=null;list.forEach(function(s){if(prev)t+=d(prev,s);prev=s});return t+d(prev,BASE)}
+  // ANTES: 5 rotas montadas "no braço": faixas verticais sobrepostas, ordem sem critério
+  var order=stops.map(function(s,i){return {i:i,k:s.x+(rnd()-.5)*110}}).sort(function(a,b){return a.k-b.k}).map(function(o){return o.i});
+  var before=[[],[],[],[],[]],per=Math.ceil(N/5);
+  order.forEach(function(i,j){before[Math.floor(j/per)].push(stops[i])});
+  before.forEach(function(r){r.sort(function(a,b){return a.y-b.y})});
+  // DEPOIS: agrupa por setor ao redor da base (3 rotas) e ordena do ponto mais distante até a base
+  var ang=stops.map(function(s){return {s:s,a:Math.atan2(s.y-BASE.y,s.x-BASE.x)}}).sort(function(a,b){return a.a-b.a});
+  var after=[[],[],[]],acc=0,tg=total/3;
+  ang.forEach(function(o){var g=Math.min(2,Math.floor(acc/tg));after[g].push(o.s);acc+=o.s.p});
+  after=after.map(function(r){var rest=r.slice(),out=[],cur=rest.sort(function(a,b){return d(b,BASE)-d(a,BASE)}).shift();out.push(cur);
+    while(rest.length){var bi=0,bd=1e9;rest.forEach(function(s,i){var v=d(cur,s)+0.35*d(s,BASE);if(v<bd){bd=v;bi=i}});cur=rest.splice(bi,1)[0];out.push(cur)}return out});
+  function pass(r){return r.reduce(function(a,s){return a+s.p},0)}
+  function km(rs){return rs.reduce(function(a,r){return a+len(r)},0)*KM}
+  var M={a:{rotas:before.length,km:km(before),occ:total/(before.length*CAP)},d:{rotas:after.length,km:km(after),occ:total/(after.length*CAP)}};
+  root._m=M;root._t=total;root._pa=after.map(pass);
+  // ---- desenho
+  var svg=root.querySelector('svg'),cores=['#35B7A4','#F2B84B','#7FA8F8','#EE7C93','#B496EE'];
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  var g0=el('g',{}),gB=el('g',{id:'otm-b'}),gA=el('g',{id:'otm-a',opacity:0}),gS=el('g',{});
+  for(var x=0;x<=W;x+=20)g0.appendChild(el('line',{x1:x,y1:0,x2:x,y2:H,stroke:'rgba(255,255,255,'+(x%100===0?.09:.045)+')','stroke-width':x%100===0?3:1.5}));
+  for(var y=0;y<=H;y+=20)g0.appendChild(el('line',{x1:0,y1:y,x2:W,y2:y,stroke:'rgba(255,255,255,'+(y%100===0?.09:.045)+')','stroke-width':y%100===0?3:1.5}));
+  function path(r,cor,w,op,i,n){var pts=[];r.forEach(function(s,k){if(k>0){var p=r[k-1];pts.push([s.x,p.y])}pts.push([s.x,s.y])});
+    var l=r[r.length-1],ax=486+i*7,oy=BASE.y+(i-(n-1)/2)*6;
+    pts.push([ax,l.y],[ax,oy],[BASE.x,oy],[BASE.x,BASE.y]);
+    return el('polyline',{points:pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' '),fill:'none',stroke:cor,'stroke-width':w,'stroke-linejoin':'round','stroke-linecap':'round',opacity:op,pathLength:1})}
+  before.forEach(function(r,i){gB.appendChild(path(r,cores[i],2.4,.85,i,before.length))});
+  after.forEach(function(r,i){var p=path(r,cores[i],3.8,1,i,after.length);p.style.strokeDasharray=1;p.style.strokeDashoffset=1;gA.appendChild(p)});
+  stops.forEach(function(s){gS.appendChild(el('circle',{cx:s.x,cy:s.y,r:3+s.p*.7,fill:'#0A1A2B',stroke:'#fff','stroke-width':1.6}))});
+  var bs=el('g',{});bs.appendChild(el('rect',{x:BASE.x-13,y:BASE.y-13,width:26,height:26,rx:7,fill:'#35B7A4'}));
+  var t=el('text',{x:BASE.x+19,y:BASE.y+4,'text-anchor':'start',fill:'#fff','font-size':11,'font-weight':700,'font-family':'Manrope,sans-serif'});t.textContent='Base (destino)';bs.appendChild(t);
+  var u=el('use',{href:'#i-building-2',x:BASE.x-8,y:BASE.y-8,width:16,height:16,color:'#0A1A2B'});u.style.stroke='#0A1A2B';bs.appendChild(u);
+  [g0,gB,gA,gS,bs].forEach(function(e){svg.appendChild(e)});
+  // ---- estado e animação
+  var st='antes',busy=false;
+  var q=function(s){return root.querySelector(s)};
+  var kR=q('[data-k=rotas]'),kK=q('[data-k=km]'),kO=q('[data-k=occ]'),kP=q('[data-k=pass]'),chip=q('.otm-chip'),b1=q('#otm-go'),b2=q('#otm-ok'),b3=q('#otm-undo'),leg=q('.otm-leg');
+  kP.textContent=total;
+  function fmt(v,k){return k==='occ'?Math.round(v*100)+'%':k==='km'?Math.round(v)+' km':Math.round(v)}
+  function setK(a,b,ms){var t0=null;function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/ms),e=1-Math.pow(1-p,3);
+    kR.textContent=fmt(a.rotas+(b.rotas-a.rotas)*e);kK.textContent=fmt(a.km+(b.km-a.km)*e,'km');kO.textContent=fmt(a.occ+(b.occ-a.occ)*e,'occ');
+    if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+  function dl(on){var m=q('[data-d=rotas]'),k=q('[data-d=km]'),o=q('[data-d=occ]');
+    m.textContent=on?'\u2212'+(M.a.rotas-M.d.rotas)+' rotas':'';k.textContent=on?'\u2212'+Math.round(M.a.km-M.d.km)+' km por dia ('+Math.round((1-M.d.km/M.a.km)*100)+'%)':'';o.textContent=on?'+'+Math.round((M.d.occ-M.a.occ)*100)+' pontos':''}
+  function legenda(rs){leg.innerHTML=rs.map(function(r,i){return '<span><i style="background:'+cores[i]+'"></i>Rota '+(i+1)+' · '+pass(r)+' de '+CAP+'</span>'}).join('')}
+  function show(s){st=s;var paths=gA.querySelectorAll('polyline');
+    if(s==='antes'){gB.style.opacity=1;gA.setAttribute('opacity',0);paths.forEach(function(p){p.style.transition='none';p.style.strokeDashoffset=1});legenda(before);
+      chip.className='otm-chip';chip.textContent='Situação atual';b1.hidden=false;b2.hidden=true;b3.hidden=true}
+    else{gB.style.opacity=0;gA.setAttribute('opacity',1);paths.forEach(function(p,i){p.getBoundingClientRect();p.style.transition='stroke-dashoffset 1.1s ease '+(i*.25)+'s';p.style.strokeDashoffset=0});legenda(after)}}
+  gB.style.transition='opacity .5s';
+  b1.onclick=function(){if(busy)return;busy=true;show('prop');setK(M.a,M.d,1500);dl(true);chip.className='otm-chip rasc';chip.textContent='Proposta em rascunho · aguardando aprovação';
+    b1.hidden=true;b2.hidden=false;b3.hidden=false;setTimeout(function(){busy=false},1600)};
+  b2.onclick=function(){st='ok';chip.className='otm-chip ok';chip.textContent='Aprovada · versão anterior arquivada';b2.hidden=true;b3.textContent='Desfazer aprovação'};
+  b3.onclick=function(){if(busy)return;var from=(st==='ok'||st==='prop')?M.d:M.a;busy=true;show('antes');setK(from,M.a,900);dl(false);b3.textContent='Descartar proposta';setTimeout(function(){busy=false},1000)};
+  b3.textContent='Descartar proposta';
+  show('antes');kR.textContent=M.a.rotas;kK.textContent=fmt(M.a.km,'km');kO.textContent=fmt(M.a.occ,'occ');
+  var sv=q('.otm-eco');
+  window.__otm=M;
+})();
+
 </script>
 </body>
 </html>
